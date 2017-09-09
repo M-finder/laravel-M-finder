@@ -36,7 +36,7 @@ class Comment extends Model {
                     $message['uid'] = $id;
                     $message['status'] = 0;
                     $message['type'] = 0;
-                    $message['title'] = '<a>' . Auth::user()->name . '</a>' . '在<a href="/detail/' . $id . '" target="_blade">' . $article->title . '</a>中回复了你';
+                    $message['title'] = '<a>' . Auth::user()->name . '</a>' . '在<a href="/home/article-detail/' . $id . '" target="_blade">' . $article->title . '</a>中回复了你';
                     $message['content'] = $inputs['content'];
                     Message::create($message);
                 }
@@ -46,7 +46,7 @@ class Comment extends Model {
 
         $message['status'] = 0;
         $message['type'] = 0;
-        $message['title'] = '<a>' . Auth::user()->name . '</a>' . '在<a href="/detail/' . $article->id . '" target="_blade">' . $article->title . '</a>中回复了你';
+        $message['title'] = '<a>' . Auth::user()->name . '</a>' . '在<a href="/home/article-detail/' . $article->id . '" target="_blade">' . $article->title . '</a>中回复了你';
         $message['content'] = $inputs['content'];
         $message['uid'] = $article->uid;
         $new_comment = Comment::create($inputs);

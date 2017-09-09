@@ -39,12 +39,16 @@ class Article extends Model {
         $model = self::common();
         
         $uid = request('uid');
-
+        $kw = request('kw');
+        
         if (!is_null($uid) && $uid != 0) {
             $model = $model->where('articles.uid', '=', $uid);
         }
         if (!is_null($mid) && $mid != 0) {
             $model = $model->where('articles.mid', '=', $mid);
+        }
+        if (!is_null($kw)) {
+            $model = $model->where('articles.title', 'like', '%'.$kw.'%');
         }
 
         $articles = $model->paginate($per_page);
@@ -64,11 +68,6 @@ class Article extends Model {
             $article->liked = 1;
         }
         return $article;
-    }
-
-    public function creat_new_data($data) {
-        $res = Article::create($data);
-        return $res;
     }
 
 }

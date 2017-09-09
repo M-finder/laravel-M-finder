@@ -28,10 +28,6 @@
                 }
             };
 
-            laytpl.config({
-                open: '<%',
-                close: '%>'
-            });
 
             var gather = {
 

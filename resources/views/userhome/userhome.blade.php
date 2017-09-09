@@ -27,11 +27,11 @@
                 <ul class="layui-nav layui-layout-right nav-user">
                     <li class="layui-nav-item " >
                         <a href="javascript:;" id="uid" data-uid="{{ Auth::user()->id }}">
-                            <img src="/images/avatar/{{ isset(Auth::user()->avatar) ?Auth::user()->avatar :rand(1,11).'.jpg' }} " class="layui-nav-img">
+                            <img src="{{ isset(Auth::user()->avatar) ? Auth::user()->avatar : '/images/avatar/'.rand(1,11).'.jpg' }} " class="layui-nav-img">
                             {{ Auth::user()->name }}
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="/userhome/infoset">基本资料</a></dd>
+                            <dd><a href="/userhome/infoset">个人设置</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
@@ -62,7 +62,7 @@
                         <li class="layui-nav-item layui-nav-itemed">
                             <a class="" href="/userhome/infoset">个人设置</a>
                         </li>
-                        <li class="layui-nav-item"><a href="">联系后台</a></li>
+                        <li class="layui-nav-item"><a href="/userhome/contact-back">联系后台</a></li>
                     </ul>
 
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,23 @@ class UploadController extends Controller {
         }
     }
 
+    public function upload_articles_avatar(Request $request) {
+        if (Auth::guest()) {
+            return $this->json_response(1, "请先登录", 0);
+        } else {
+            $file = $request->file('file');
+            $res = $this->upload_img('avatar', $file);
+            $uid = Auth::user()->id;
+            $user = User::where('id', '=', $uid)->update(['avatar' => $res['src']]);
+            return response()->json($res);
+        }
+    }
+
     public function upload_img($path, $file) {
         if ($file->isValid()) {
+            if ($file->getClientSize() > 153600) {
+                return $this->json_response(1, "请上传小于 150 kb 的图片", 0);
+            }
             $ext = $file->getClientOriginalExtension();
             $realPath = $file->getRealPath();
             $type = $file->getClientMimeType();
@@ -28,7 +44,7 @@ class UploadController extends Controller {
             $bool = Storage::disk($path)->put($filename, file_get_contents($realPath));
             $url = Storage::disk($path)->url($filename);
             if ($filename) {
-                return response()->json(['code' => 0, 'msg' => '', 'data' => ['src' => $url, 'title' => $filename]]);
+                return ['code' => 0, 'msg' => '', 'src' => $url, 'title' => $filename];
             }
         }
     }

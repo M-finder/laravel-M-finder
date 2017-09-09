@@ -22,7 +22,6 @@ Route::prefix('home')->group(function () {
     Route::get('/category/{id}', 'Home\CategoryController@category');
     Route::get('/single-page/{id}', 'Home\CategoryController@single_page');
     Route::get('/article-detail/{id}', 'Home\ArticleController@article_detail');
-    
 });
 
 Auth::routes();
@@ -32,15 +31,21 @@ Route::prefix('userhome')->group(function () {
     Route::get('/new-article', 'UserHome\ArticleController@new_article');
     Route::get('/update-article/{id}', 'UserHome\ArticleController@update_article');
     Route::get('/infoset', 'UserHome\UserController@infoset');
-    
+    Route::get('/messages', 'UserHome\UserController@messages');
+    Route::get('/contact-back', 'UserHome\UserController@contact_back');
+
     Route::post('/articles', 'UserHome\ArticleController@articles');
     Route::post('/myarticles', 'UserHome\ArticleController@articles');
     Route::post('/edit-article', 'UserHome\ArticleController@edit_article');
     Route::post('/delete-article', 'UserHome\ArticleController@delete_article');
     Route::post('/message', 'UserHome\UserController@message');
     Route::post('/message/read', 'UserHome\UserController@messageread');
-    
-    
+    Route::post('/mymessages', 'UserHome\UserController@mymessages');
+    Route::post('/edit_sign', 'UserHome\UserController@edit_sign');
+    Route::post('/password_reset', 'UserHome\UserController@password_reset');
+    Route::post('/feedback', 'UserHome\UserController@feedback');
+    Route::post('/feedbacks', 'UserHome\UserController@feedbacks');
 });
 
 Route::post('/upload-img', 'UploadController@upload_articles_img');
+Route::post('/upload-avatar', 'UploadController@upload_articles_avatar');

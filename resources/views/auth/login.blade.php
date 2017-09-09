@@ -14,7 +14,7 @@
                 <div class="layui-form-item ">
                     <label class="layui-form-label">登录邮箱</label>
                     <div class="layui-input-inline">
-                        <input id="email" type="email" class="layui-input" lay-verify="require|email" name="email" value="{{ old('email') }}" autofocus autocomplete="off" placeholder="请输入登录邮箱">
+                        <input id="email" type="email" class="layui-input" lay-verify="required|email" name="email" value="{{ old('email') }}" autofocus autocomplete="off" placeholder="请输入登录邮箱">
                     </div>
                     @if ($errors->has('email'))
                     <div class="layui-form-mid layui-word-aux">{{ $errors->first('email') }}</div>
