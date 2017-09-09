@@ -37,4 +37,10 @@ Route::prefix('userhome')->group(function () {
     Route::post('/myarticles', 'UserHome\ArticleController@articles');
     Route::post('/edit-article', 'UserHome\ArticleController@edit_article');
     Route::post('/delete-article', 'UserHome\ArticleController@delete_article');
+    Route::post('/message', 'UserHome\UserController@message');
+    Route::post('/message/read', 'UserHome\UserController@messageread');
+    
+    
 });
+
+Route::post('/upload-img', 'UploadController@upload_articles_img');

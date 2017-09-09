@@ -54,7 +54,7 @@
                 var form = layui.form, layer = layui.layer, layedit = layui.layedit;
                 layedit.set({
                     uploadImage: {
-                        url: '/upload/img' //接口url  {"code": 0 ,"msg": "" ,"data": {"src": "图片路径","title": "图片名称"}
+                        url: '/upload-img' //接口url  {"code": 0 ,"msg": "" ,"data": {"src": "图片路径","title": "图片名称"}
                         , type: 'post' //默认post
                     }
                 });

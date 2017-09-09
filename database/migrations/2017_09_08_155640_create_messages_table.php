@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->integer('uid')->index();
             $table->integer('status')->default(0);
+            $table->string('title');
             $table->text('content')->nullable();
             $table->integer('type')->default(0);
             $table->timestamps();

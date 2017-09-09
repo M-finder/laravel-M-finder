@@ -35,56 +35,7 @@
 
             var gather = {
 
-                //Ajax
-                json: function (url, data, success, options) {
-                    var that = this;
-                    options = options || {};
-                    data = data || {};
-                    return $.ajax({
-                        type: options.type || 'post',
-                        dataType: options.dataType || 'json',
-                        data: data,
-                        url: url,
-                        success: function (res) {
-                            if (res.status === 0) {
-                                success && success(res);
-                            }
-                        }, error: function (e) {
-                            options.error || layer.msg('请求异常，请重试', {shift: 6});
-                        }
-                    });
-                }
-
-                //将普通对象按某个key排序
-                , sort: function (data, key, asc) {
-                    var obj = JSON.parse(JSON.stringify(data));
-                    var compare = function (obj1, obj2) {
-                        var value1 = obj1[key];
-                        var value2 = obj2[key];
-                        if (value2 < value1) {
-                            return -1;
-                        } else if (value2 > value1) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    };
-                    obj.sort(compare);
-                    if (asc)
-                        obj.reverse();
-                    return obj;
-                }
-
-                //计算字符长度
-                , charLen: function (val) {
-                    var arr = val.split(''), len = 0;
-                    for (var i = 0; i < val.length; i++) {
-                        arr[i].charCodeAt(0) < 299 ? len++ : len += 2;
-                    }
-                    return len;
-                }
-
-                , form: {}
+               form: {}
 
                 //简易编辑器
                 , layEditor: function (options) {
@@ -121,7 +72,7 @@
                                     var image = layero.find('input[name="image"]');
 
                                     upload.render({
-                                        url: '/upload/img'
+                                        url: '/upload-img'
                                         , elem: '#uploadImg'
                                         , accept: 'file' //普通文件
                                         , exts: 'png|jpg|gif|jpeg|PNG|GIF|JPG|JPEG' //只允许上传压缩文件
@@ -231,14 +182,14 @@
                 , newmsg: function () {
                     var uid = $('#uid').data('uid');
                     if (uid) {
-                        gather.json('/home/message', {uid: uid}, function (res) {
+                        $.post('/userhome/message', {uid: uid}, function (res) {
                             if (res.count > 0) {
                                 var msg = $('<a class="nav-message" href="javascript:;" title="您有' + res.count + '条未阅读的消息">' + res.count + '</a>');
                                 $('.nav-user').append(msg);
                                 msg.on('click', function () {
-                                    gather.json('/message/read', {}, function (res) {
+                                    $.post('/userhome/message/read', {}, function (res) {
                                         if (res.code === 0) {
-                                            location.href = '/messageread';
+                                            location.href = '/userhome/messages';
                                         }
                                     });
                                 });
@@ -343,7 +294,6 @@
                 var aid = $('#main').data('aid');
                 var reply_uids = $('#commentform').attr('data-uid');
                 var token = $('#token').val();
-                
                 if (content == '' || $.trim(content).length === 0) {
                     layer.msg('请输入评论内容', {icon: 5});
                 } else {

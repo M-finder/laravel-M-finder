@@ -18,7 +18,6 @@ class CreateCommentsTable extends Migration
             $table->integer('uid');
             $table->string('reply_uids')->nullable();
             $table->integer('aid');
-            $table->string('title');
             $table->text('content');
             $table->integer('status')->default(0);
             $table->timestamps();
