@@ -55,7 +55,7 @@ input[disabled]{cursor:default;color:rgba(0,0,0,.8);background-color:rgba(0,0,0,
 .hover{color: #fff!important;border-color: #fff!important}
 a{word-wrap:break-word}
 .music{width: 20px;height:20px;margin-left:20px;margin-bottom:10px;cursor: pointer}
-.log-box{height:50px;padding-top:30px;}
+.log-box{height:50px;padding-top:10px;}
 .login,.reg{
     display: inline-block;
     border: 1px solid hsla(0,0%,100%,.8);
