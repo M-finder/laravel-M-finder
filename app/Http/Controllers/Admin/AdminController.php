@@ -7,6 +7,8 @@ use App\Link;
 use App\SysConfig;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller {
 
@@ -82,17 +84,17 @@ class AdminController extends Controller {
 
     public function edit_links($id = 0) {
         $link = Link::find($id);
-        return view('admin.edit_link')->with('link',$link);
+        return view('admin.edit_link')->with('link', $link);
     }
-    
-    public function save_link(){
+
+    public function save_link() {
         $data = request('data');
         $id = $data['id'];
-        if(is_null($id)){
+        if (is_null($id)) {
             unset($data['id']);
             $add = Link::create($data);
             return $this->json_response(0, "操作成功", $add);
-        }else{
+        } else {
             $link = Link::find($id);
             $link->name = $data['name'];
             $link->link = $data['link'];
@@ -100,7 +102,8 @@ class AdminController extends Controller {
             return $this->json_response(0, "操作成功", $link);
         }
     }
-    public function delete_link(){
+
+    public function delete_link() {
         $id = request('id');
         $link = Link::where('id', '=', $id)->first();
         if (is_null($link)) {
@@ -112,13 +115,13 @@ class AdminController extends Controller {
             return $this->json_response(1, "删除失败了，刷新再试试", 0);
         }
     }
-    
-    public function syscoonfig(){
+
+    public function sysconfig() {
         $sysconfig = SysConfig::find(1);
-        return view('admin.sysconfig')->with('sysconfig',$sysconfig);
+        return view('admin.sysconfig')->with('sysconfig', $sysconfig);
     }
-    
-    public function edit_sysconfig(){
+
+    public function edit_sysconfig() {
         $data = request('data');
         $sysconfig = SysConfig::find(1);
         $sysconfig->web_name = $data['web_name'];
@@ -127,6 +130,23 @@ class AdminController extends Controller {
         $sysconfig->web_description = $data['web_description'];
         $sysconfig->save();
         return $this->json_response(0, "操作成功", $sysconfig);
+    }
+
+    public function infoset() {
+        return view('admin.infoset');
+    }
+
+    public function password_reset() {
+        $oldpwd = request('oldpassword');
+        $user = Auth::user();
+        if (!Hash::check($oldpwd, $user->password)) {
+            return $this->json_response(1, "原始密码错误", 1);
+        } else {
+            $pwd = Hash::make(request('password'));
+            $user->password = $pwd;
+            $user->save();
+            return $this->json_response(0, "修改成功", 1);
+        }
     }
 
 }
