@@ -6,6 +6,8 @@ use App\Feedback;
 use App\Link;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller {
 
@@ -123,6 +125,22 @@ class AdminController extends Controller {
             return $this->json_response(0, "删除成功", 0);
         } else {
             return $this->json_response(1, "删除失败了，刷新再试试", 0);
+        }
+    }
+    public function infoset(){
+        return view('admin.infoset');
+    }
+
+    public function password_reset(){
+        $oldpwd = request('oldpassword');
+        $user = Auth::user();
+        if(!Hash::check($oldpwd,$user->password)){
+            return $this->json_response(1, "原始密码错误", 1);
+        }else{
+            $pwd = Hash::make(request('password'));
+            $user->password = $pwd;
+            $user->save();
+            return $this->json_response(0, "修改成功", 1);
         }
     }
 

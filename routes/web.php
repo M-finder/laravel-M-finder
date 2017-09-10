@@ -57,6 +57,7 @@ Route::prefix('admin')->group(function() {
 Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::get('/', 'Admin\AdminController@index');
     Route::get('/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
+    Route::get('/infoset', 'Admin\AdminController@infoset');
     Route::get('/update-article/{id}', 'Admin\ArticleController@update_article');
     Route::get('/publish-article/{id}', 'Admin\ArticleController@publish_article');
     Route::get('/new-category', 'Admin\MenuController@new_category');
@@ -70,6 +71,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::get('/edit-links/{id?}', 'Admin\AdminController@edit_links');
 
     Route::post('/articles', 'Admin\ArticleController@articles');
+    Route::post('/password_reset', 'Admin\AdminController@password_reset');
     Route::post('/edit-article', 'Admin\ArticleController@edit_article');
     Route::post('/delete-article', 'Admin\ArticleController@delete_article');
     Route::post('/categorys', 'Admin\MenuController@categorys');
