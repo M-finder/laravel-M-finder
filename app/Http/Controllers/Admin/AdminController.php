@@ -4,25 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Feedback;
 use App\Link;
+use App\SysConfig;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct() {
-        // $this->middleware('auth:admin');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index() {
 
         $admin = auth()->guard('admin')->user();
@@ -124,6 +111,22 @@ class AdminController extends Controller {
         } else {
             return $this->json_response(1, "删除失败了，刷新再试试", 0);
         }
+    }
+    
+    public function syscoonfig(){
+        $sysconfig = SysConfig::find(1);
+        return view('admin.sysconfig')->with('sysconfig',$sysconfig);
+    }
+    
+    public function edit_sysconfig(){
+        $data = request('data');
+        $sysconfig = SysConfig::find(1);
+        $sysconfig->web_name = $data['web_name'];
+        $sysconfig->web_title = $data['web_title'];
+        $sysconfig->web_keywords = $data['web_keywords'];
+        $sysconfig->web_description = $data['web_description'];
+        $sysconfig->save();
+        return $this->json_response(0, "操作成功", $sysconfig);
     }
 
 }

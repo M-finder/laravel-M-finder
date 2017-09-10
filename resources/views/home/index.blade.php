@@ -1,10 +1,9 @@
 @extends('layouts.home')
 
 @section('content')
-<img  src='{{ asset('storage/articles/2017-09-10-10-05-04-59b50e5035736.gif')}}'>
 <script id="comment_tpl" type="text/html">
     <%# for(var i = 0; i < d.data.length; i++){ %>
-    <li id="comment-142" class="comment even thread-even depth-1">
+    <li class="comment even thread-even depth-1">
         <article class="comment-body" id="comment">
             <footer class="comment-meta">
                 <div class="comment-author vcard">
@@ -16,7 +15,7 @@
                 </div>
             </footer>
             <div class="comment-content">
-                <p class="photos"><% d.data[i].content %></p>
+                <% d.data[i].content %>
             </div>
             <div class="reply">
                 <a rel="nofollow" class="comment-reply-link" href="javascript:void(0)" onclick="jump_comment(this)" data-uid="<% d.data[i].uid %>" data-name="<% d.data[i].name %>">回复</a>
@@ -55,11 +54,11 @@
                         <h3>
                             {{ $article->author}} 
                         </h3>
-                            @if($article->author_level==2)
-                            <span class="layui-badge-rim layui-bg-orange">管理员 </span>
-                            @elseif($article->author_level==1)
-                            <span class="layui-badge-rim layui-bg-blue">发布者</span>
-                            @endif
+                        @if($article->author_level==2)
+                        <span class="layui-badge-rim layui-bg-orange">管理员 </span>
+                        @elseif($article->author_level==1)
+                        <span class="layui-badge-rim layui-bg-blue">发布者</span>
+                        @endif
                         <p>{{ $article->sign}}</p>
                     </div>
                 </div>

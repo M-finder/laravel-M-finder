@@ -135,4 +135,9 @@ a{word-wrap:break-word}
     max-width: 100%;
     cursor: crosshair;
 }
-
+#web_description{
+    width:100%;
+    border:none;
+    height:150px;
+    padding:10px;
+}

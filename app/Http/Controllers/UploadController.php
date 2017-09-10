@@ -44,7 +44,7 @@ class UploadController extends Controller {
             $bool = Storage::disk($path)->put($filename, file_get_contents($realPath));
             $url = Storage::disk($path)->url($filename);
             if ($filename) {
-                return ['code' => 0, 'msg' => '', 'src' => $url, 'title' => $filename];
+                return ['code' => 0, 'msg' => '', 'src' => $url, 'data'=>['src'=>$url,'title'=>$filename]]; //{"code": 0 ,"msg": "" ,"data": {"src": "图片路径","title": "图片名称"}
             }
         }
     }
