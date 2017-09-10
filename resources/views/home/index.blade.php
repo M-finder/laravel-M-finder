@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
-
+<img  src='{{ asset('storage/articles/2017-09-10-10-05-04-59b50e5035736.gif')}}'>
 <script id="comment_tpl" type="text/html">
     <%# for(var i = 0; i < d.data.length; i++){ %>
     <li id="comment-142" class="comment even thread-even depth-1">

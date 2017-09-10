@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Feedback;
+use App\Link;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -29,49 +30,49 @@ class AdminController extends Controller {
         return redirect()->route('dashboard');
     }
 
-   public function dashboard() {
-       return view('admin.dashboard');
-   }
-   
-   public function messages(){
-       return view('admin.contact_back');
-   }
-   
-   public function feedbacks() {
+    public function dashboard() {
+        return view('admin.dashboard');
+    }
+
+    public function messages() {
+        return view('admin.contact_back');
+    }
+
+    public function feedbacks() {
         $per_page = request('per_page', 20);
-        $feedbacks = Feedback::orderBy('id','desc')->paginate($per_page)->toArray();
-        foreach($feedbacks['data'] as $k=>$v){
-            if($v['mid']==1){
+        $feedbacks = Feedback::leftJoin('users', 'users.id', '=', 'feedback.uid')->select('feedback.*', 'users.name')->orderBy('feedback.id', 'desc')->paginate($per_page)->toArray();
+        foreach ($feedbacks['data'] as $k => $v) {
+            if ($v['mid'] == 1) {
                 $feedbacks['data'][$k]['mid'] = '作者认证';
             }
-            if($v['mid']==2){
+            if ($v['mid'] == 2) {
                 $feedbacks['data'][$k]['mid'] = 'BUG反馈';
             }
-            if($v['mid']==3){
+            if ($v['mid'] == 3) {
                 $feedbacks['data'][$k]['mid'] = '友链申请';
             }
-            if($v['mid']==4){
+            if ($v['mid'] == 4) {
                 $feedbacks['data'][$k]['mid'] = '其他';
             }
-            if($v['status']==0){
+            if ($v['status'] == 0) {
                 $feedbacks['data'][$k]['status'] = '未处理';
             }
-            if($v['status']==2){
+            if ($v['status'] == 2) {
                 $feedbacks['data'][$k]['status'] = '已处理';
             }
-            if($v['status']==1){
+            if ($v['status'] == 1) {
                 $feedbacks['data'][$k]['status'] = '拒绝';
             }
         }
         return response()->json(['code' => 0, 'msg' => '操作成功', 'count' => $feedbacks['total'], 'data' => $feedbacks['data']]);
     }
-    
 
-    public function edit_feedback($id=0){
+    public function edit_feedback($id = 0) {
         $feedback = Feedback::find($id);
-        return view('admin.edit_feedback')->with('feedback',$feedback);
+        return view('admin.edit_feedback')->with('feedback', $feedback);
     }
-    public function save_feedback(){
+
+    public function save_feedback() {
         $data = request('data');
         $id = $data['id'];
         $feedback = Feedback::find($id);
@@ -80,4 +81,49 @@ class AdminController extends Controller {
         $feedback->save();
         return $this->json_response(0, "操作成功", $feedback);
     }
+
+    public function links() {
+        return view('admin.links');
+    }
+
+    public function get_links() {
+        $per_page = request('per_page', 20);
+        $links = Link::orderBy('id', 'desc')->paginate($per_page)->toArray();
+
+        return response()->json(['code' => 0, 'msg' => '操作成功', 'count' => $links['total'], 'data' => $links['data']]);
+    }
+
+    public function edit_links($id = 0) {
+        $link = Link::find($id);
+        return view('admin.edit_link')->with('link',$link);
+    }
+    
+    public function save_link(){
+        $data = request('data');
+        $id = $data['id'];
+        if(is_null($id)){
+            unset($data['id']);
+            $add = Link::create($data);
+            return $this->json_response(0, "操作成功", $add);
+        }else{
+            $link = Link::find($id);
+            $link->name = $data['name'];
+            $link->link = $data['link'];
+            $link->save();
+            return $this->json_response(0, "操作成功", $link);
+        }
+    }
+    public function delete_link(){
+        $id = request('id');
+        $link = Link::where('id', '=', $id)->first();
+        if (is_null($link)) {
+            return $this->json_response(1, "链接不存在", 0);
+        }
+        if ($link->delete()) {
+            return $this->json_response(0, "删除成功", 0);
+        } else {
+            return $this->json_response(1, "删除失败了，刷新再试试", 0);
+        }
+    }
+
 }

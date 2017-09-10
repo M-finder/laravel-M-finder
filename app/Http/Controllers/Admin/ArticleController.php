@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 class ArticleController extends Controller {
 
     public function articles() {
-        $type = request('type');
         $articles = Article::articles()->toArray();
         foreach ($articles['data'] as $k => $v) {
             if ($v['status'] == 0) {

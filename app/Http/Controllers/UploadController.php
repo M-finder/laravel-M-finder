@@ -27,15 +27,15 @@ class UploadController extends Controller {
             $file = $request->file('file');
             $res = $this->upload_img('avatar', $file);
             $uid = Auth::user()->id;
-            $user = User::where('id', '=', $uid)->update(['avatar' => $res['src']]);
+            User::where('id', '=', $uid)->update(['avatar' => $res['src']]);
             return response()->json($res);
         }
     }
 
     public function upload_img($path, $file) {
         if ($file->isValid()) {
-            if ($file->getClientSize() > 153600) {
-                return $this->json_response(1, "请上传小于 150 kb 的图片", 0);
+            if ($file->getClientSize() > 2097152) {
+                return $this->json_response(1, "请上传小于 2 mb 的图片", 0);
             }
             $ext = $file->getClientOriginalExtension();
             $realPath = $file->getRealPath();

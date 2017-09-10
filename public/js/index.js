@@ -73,8 +73,9 @@
                                         , accept: 'file' //普通文件
                                         , exts: 'png|jpg|gif|jpeg|PNG|GIF|JPG|JPEG' //只允许上传压缩文件
                                         , done: function (res) {
+                                            console.log(res);
                                             if (res.code == 0) {
-                                                image.val(res.data.src);
+                                                image.val(res.src);
                                             } else {
                                                 layer.msg(res.msg, {icon: 5});
                                             }

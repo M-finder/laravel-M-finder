@@ -4,7 +4,7 @@
 
 <div class="layui-body">
     <!-- 内容主体区域 -->
-    <div class="layui-col-md6 layui-col-xs12" style="padding: 15px;">
+    <div class="layui-col-md8 layui-col-xs12" style="padding: 15px;">
         <form class="layui-form layui-form-pane" method="POST" >
             <div class="layui-form-item " style="margin-top:10px;">
                 <label class="layui-form-label">分类管理</label>

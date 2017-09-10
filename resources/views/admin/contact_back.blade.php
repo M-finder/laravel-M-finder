@@ -17,6 +17,7 @@
                         <thead>
                             <tr>
                                 <th lay-data="{field:'id', width:90, sort: true}">ID</th>
+                                <th lay-data="{field:'name', width:120}">用户姓名</th>
                                 <th lay-data="{field:'mid', width:120}">类型</th>
                                 <th lay-data="{field:'content', width:241}">内容</th>
                                 <th lay-data="{field:'status', width:120}">状态</th>

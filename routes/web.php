@@ -64,6 +64,10 @@ Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::get('/category', 'Admin\MenuController@category');
     Route::get('/messages', 'Admin\AdminController@messages');
     Route::get('/edit-feedback/{id}', 'Admin\AdminController@edit_feedback');
+    Route::get('/user', 'Admin\UserController@user');
+    Route::get('/edit-user/{id}', 'Admin\UserController@edit_user');
+    Route::get('/links', 'Admin\AdminController@links');
+    Route::get('/edit-links/{id?}', 'Admin\AdminController@edit_links');
 
     Route::post('/articles', 'Admin\ArticleController@articles');
     Route::post('/edit-article', 'Admin\ArticleController@edit_article');
@@ -74,6 +78,12 @@ Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::post('/feedbacks', 'Admin\AdminController@feedbacks');
     Route::post('/save-feedback', 'Admin\AdminController@save_feedback');
     Route::post('/save-article', 'Admin\ArticleController@save_article');
+    Route::post('/users', 'Admin\UserController@users');
+    Route::post('/save-user', 'Admin\UserController@save_user');
+    Route::post('/delete-user', 'Admin\UserController@delete_user');
+    Route::post('/get-links', 'Admin\AdminController@get_links');
+    Route::post('/save-link', 'Admin\AdminController@save_link');
+    Route::post('/delete-link', 'Admin\AdminController@delete_link');
 });
 
 

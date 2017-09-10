@@ -25,12 +25,12 @@ $(function () {
             if (layEvent === 'publish') {
                 layer.open({
                     type: 2,
-                    title: '后台消息处理',
+                    title: '后台文章处理',
                     shadeClose: true,
                     shade: false,
                     maxmin: true, //开启最大化最小化按钮
                     area: ['700px', '600px'],
-                    content: '/admin/publish-article/'+data.id
+                    content: '/admin/publish-article/' + data.id
                 });
             }
             if (layEvent === 'del') {
@@ -156,7 +156,7 @@ $(function () {
                     shade: false,
                     maxmin: true, //开启最大化最小化按钮
                     area: ['700px', '600px'],
-                    content: '/admin/edit-feedback/'+data.id
+                    content: '/admin/edit-feedback/' + data.id
                 });
             }
             if (layEvent === 'del') {
@@ -184,6 +184,122 @@ $(function () {
         });
         $('#add-cate').click(function () {
             window.location.href = "/admin/new-category";
+        });
+    });
+
+});
+
+
+$(function () {
+    if (query_dir !== '/admin/user') {
+        return false;
+    }
+    $($(".layui-nav-item").children("a[href='/admin/user']")).parent('li').addClass('layui-this');
+
+    layui.use('table', function () {
+        var table = layui.table;
+        table.on('tool(users)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
+            if (layEvent === 'edit') {
+                layer.open({
+                    type: 2,
+                    title: '用户管理',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['700px', '400px'],
+                    content: '/admin/edit-user/' + data.id
+                });
+            }
+            if (layEvent === 'del') {
+                layer.confirm('确认删除该用户？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function (index) {
+                    $.post('/admin/delete-user', {id: data.id}, function (res) {
+                        if (res.code == 0) {
+                            obj.del();
+                            layer.close(index);
+                            layer.msg('真的删了', {time: 2000, icon: 1});
+                        } else {
+                            layer.msg(res.msg, {time: 2000, icon: 5});
+                        }
+                    });
+                });
+            }
+
+        });
+        $('#search').click(function () {
+            table.reload('users_table', {
+                url: '/admin/users'
+                , where: {kw: $('#kw').val()}
+            });
+        });
+        $('#add-cate').click(function () {
+            window.location.href = "/admin/new-category";
+        });
+    });
+
+});
+
+
+$(function () {
+    if (query_dir !== '/admin/links') {
+        return false;
+    }
+    $($(".layui-nav-item").children("a[href='/admin/links']")).parent('li').addClass('layui-this');
+
+    layui.use('table', function () {
+        var table = layui.table;
+        table.on('tool(links)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
+            if (layEvent === 'edit') {
+                layer.open({
+                    type: 2,
+                    title: '友链管理',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['700px', '400px'],
+                    content: '/admin/edit-links/' + data.id
+                });
+            }
+            if (layEvent === 'del') {
+                layer.confirm('确认删除该链接？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function (index) {
+                    $.post('/admin/delete-link', {id: data.id}, function (res) {
+                        if (res.code == 0) {
+                            obj.del();
+                            layer.close(index);
+                            layer.msg('真的删了', {time: 2000, icon: 1});
+                        } else {
+                            layer.msg(res.msg, {time: 2000, icon: 5});
+                        }
+                    });
+                });
+            }
+
+        });
+        $('#search').click(function () {
+            table.reload('users_table', {
+                url: '/admin/users'
+                , where: {kw: $('#kw').val()}
+            });
+        });
+        $('#add-links').click(function () {
+            layer.open({
+                type: 2,
+                title: '友链管理',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['700px', '400px'],
+                content: '/admin/edit-links/'
+            });
         });
     });
 

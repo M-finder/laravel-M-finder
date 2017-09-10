@@ -53,6 +53,9 @@
                         <li class="layui-nav-item layui-nav-itemed">
                             <a class="" href="/admin/category">分类管理</a>
                         </li>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a class="" href="/admin/user">用户管理</a>
+                        </li>
                         
                         <li class="layui-nav-item layui-nav-itemed">
                             <a class="" href="/admin/messages">后台消息</a>
