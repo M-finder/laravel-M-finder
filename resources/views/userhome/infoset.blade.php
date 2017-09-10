@@ -1,4 +1,4 @@
-@extends('userhome.userhome')
+@extends('layouts.userhome')
 
 @section('userhomecontent')
 <div class="layui-body">

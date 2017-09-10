@@ -47,5 +47,23 @@ Route::prefix('userhome')->group(function () {
     Route::post('/feedbacks', 'UserHome\UserController@feedbacks');
 });
 
+
+Route::prefix('admin')->group(function() {
+    Route::get('/login', 'AdminAuthnController@show_login')->name('admin.show_login');
+    Route::post('/login', 'AdminAuthnController@login')->name('admin.login');
+    Route::post('/logout', 'AdminAuthnController@logout')->name('admin.logout');
+});
+
+Route::prefix('admin')->middleware('auth:admin')->group(function() {
+    Route::get('/', 'Admin\AdminController@index');
+    Route::get('/update-article/{id}', 'Admin\ArticleController@update_article');
+    Route::get('/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
+
+    Route::post('/articles', 'Admin\ArticleController@articles');
+    Route::post('/edit-article', 'Admin\ArticleController@edit_article');
+    Route::post('/delete-article', 'Admin\ArticleController@delete_article');
+});
+
+
 Route::post('/upload-img', 'UploadController@upload_articles_img');
 Route::post('/upload-avatar', 'UploadController@upload_articles_avatar');
