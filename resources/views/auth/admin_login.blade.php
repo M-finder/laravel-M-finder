@@ -32,7 +32,6 @@
 
                 <div class="layui-form-item login-btn-box">
                     <button class="layui-btn" lay-submit="" lay-filter="login-box">立即登录</button>
-                    <span style="padding-left:20px;"><a href="{{ route('password.request') }}">忘记密码？</a></span>
                 </div>
             </form>
         </div>

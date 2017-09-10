@@ -51,6 +51,9 @@
                             <a class="" href="/admin/dashboard">所有文章</a>
                         </li>
                         <li class="layui-nav-item layui-nav-itemed">
+                            <a class="" href="/admin/comments">所有评论</a>
+                        </li>
+                        <li class="layui-nav-item layui-nav-itemed">
                             <a class="" href="/admin/category">分类管理</a>
                         </li>
                         <li class="layui-nav-item layui-nav-itemed">

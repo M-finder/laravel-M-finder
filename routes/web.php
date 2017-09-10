@@ -69,6 +69,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::get('/edit-user/{id}', 'Admin\UserController@edit_user');
     Route::get('/links', 'Admin\AdminController@links');
     Route::get('/edit-links/{id?}', 'Admin\AdminController@edit_links');
+    Route::get('/syscoonfig', 'Admin\AdminController@sysconfig');
+    Route::get('/comments', 'Admin\CommentController@comments');
 
     Route::post('/articles', 'Admin\ArticleController@articles');
     Route::post('/password_reset', 'Admin\AdminController@password_reset');
@@ -86,6 +88,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::post('/get-links', 'Admin\AdminController@get_links');
     Route::post('/save-link', 'Admin\AdminController@save_link');
     Route::post('/delete-link', 'Admin\AdminController@delete_link');
+    Route::post('/edit-sysconfig', 'Admin\AdminController@edit_sysconfig');
+    Route::post('/get-comments', 'Admin\CommentController@get_comments');
+    Route::post('/delete-comments', 'Admin\CommentController@delete_comments');
 });
 
 

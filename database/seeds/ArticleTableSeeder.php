@@ -18,7 +18,6 @@ class ArticleTableSeeder extends Seeder {
         $article->read = '0';
         $article->like = '0';
         $article->status = '2';
-        $article->reason = '已审核';
         $article->save();
     }
 

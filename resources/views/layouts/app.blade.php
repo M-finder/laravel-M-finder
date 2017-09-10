@@ -20,12 +20,6 @@
                 <div class="layui-logo">
                     <a class="navbar-brand" href="{{ url('/') }}">M-finder</a>
                 </div>
-                <ul class="layui-nav layui-layout-right">
-                    @if (Auth::guest())
-                        <li class="layui-nav-item"><a href="{{ route('register') }}">注册</a></li>
-                        <li class="layui-nav-item"><a href="{{ route('login') }}">登录</a></li>
-                    @endif
-                </ul>
             </div>
 
             <div class="content-area container login-content">

@@ -304,3 +304,45 @@ $(function () {
     });
 
 });
+
+
+$(function () {
+    if (query_dir !== '/admin/syscoonfig') {
+        return false;
+    }
+    $($(".layui-nav-item").children("a[href='/admin/syscoonfig']")).parent('li').addClass('layui-this');
+});
+
+$(function () {
+    if (query_dir !== '/admin/comments') {
+        return false;
+    }
+    $($(".layui-nav-item").children("a[href='/admin/comments']")).parent('li').addClass('layui-this');
+    layui.use('table', function () {
+        var table = layui.table;
+        table.on('tool(comments)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
+           
+            if (layEvent === 'del') {
+                layer.confirm('确认删除该评论？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function (index) {
+                    $.post('/admin/delete-comments', {id: data.id}, function (res) {
+                        if (res.code == 0) {
+                            obj.del();
+                            layer.close(index);
+                            layer.msg('真的删了', {time: 2000, icon: 1});
+                        } else {
+                            layer.msg(res.msg, {time: 2000, icon: 5});
+                        }
+                    });
+                });
+            }
+
+        });
+
+    });
+    
+});

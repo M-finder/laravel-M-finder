@@ -16,7 +16,7 @@
                 </div>
             </footer>
             <div class="comment-content">
-                <p><% d.data[i].content %></p>
+                <% d.data[i].content %>
             </div>
             <div class="reply">
                 <a rel="nofollow" class="comment-reply-link" href="javascript:void(0)" onclick="jump_comment(this)" data-uid="<% d.data[i].uid %>" data-name="<% d.data[i].name %>">回复</a>
@@ -42,7 +42,7 @@
                 </header>
                 <div class="site-content">
                     <section class="post-content">
-                        <div class="single-post-inner grap">
+                        <div class="single-post-inner grap photos">
                             {!! $article->content !!}
                         </div>
                     </section>
