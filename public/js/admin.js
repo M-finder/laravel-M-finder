@@ -22,6 +22,17 @@ $(function () {
             if (layEvent === 'edit') {
                 window.location.href = "/admin/update-article/" + data.id + "";
             }
+            if (layEvent === 'publish') {
+                layer.open({
+                    type: 2,
+                    title: '后台消息处理',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['700px', '600px'],
+                    content: '/admin/publish-article/'+data.id
+                });
+            }
             if (layEvent === 'del') {
                 layer.confirm('辛辛苦苦写的文章，就这么删除了？', {
                     btn: ['确定', '取消'] //按钮
@@ -78,3 +89,102 @@ $(function () {
     });
 });
 
+$(function () {
+    if (query_dir !== '/admin/category') {
+        return false;
+    }
+    $($(".layui-nav-item").children("a[href='/admin/category']")).parent('li').addClass('layui-this');
+
+    layui.use('table', function () {
+        var table = layui.table;
+        table.on('tool(menus)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
+            if (layEvent === 'edit') {
+                window.location.href = "/admin/update-category/" + data.id + "";
+            }
+            if (layEvent === 'del') {
+                layer.confirm('删除分类前请确保分类下已无文章？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function (index) {
+                    $.post('/admin/delete-category', {id: data.id}, function (res) {
+                        if (res.code == 0) {
+                            obj.del();
+                            layer.close(index);
+                            layer.msg('真的删了', {time: 2000, icon: 1});
+                        } else {
+                            layer.msg(res.msg, {time: 2000, icon: 5});
+                        }
+                    });
+                });
+            }
+
+        });
+        $('#search').click(function () {
+            table.reload('menus_table', {
+                url: '/admin/categorys'
+                , where: {kw: $('#kw').val()}
+            });
+        });
+        $('#add-cate').click(function () {
+            window.location.href = "/admin/new-category";
+        });
+    });
+
+});
+
+
+
+$(function () {
+    if (query_dir !== '/admin/messages') {
+        return false;
+    }
+    $($(".layui-nav-item").children("a[href='/admin/messages']")).parent('li').addClass('layui-this');
+
+    layui.use('table', function () {
+        var table = layui.table;
+        table.on('tool(messages)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
+            if (layEvent === 'edit') {
+                layer.open({
+                    type: 2,
+                    title: '后台消息处理',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['700px', '600px'],
+                    content: '/admin/edit-feedback/'+data.id
+                });
+            }
+            if (layEvent === 'del') {
+                layer.confirm('删除分类前请确保分类下已无文章？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function (index) {
+                    $.post('/admin/delete-category', {id: data.id}, function (res) {
+                        if (res.code == 0) {
+                            obj.del();
+                            layer.close(index);
+                            layer.msg('真的删了', {time: 2000, icon: 1});
+                        } else {
+                            layer.msg(res.msg, {time: 2000, icon: 5});
+                        }
+                    });
+                });
+            }
+
+        });
+        $('#search').click(function () {
+            table.reload('menus_table', {
+                url: '/admin/categorys'
+                , where: {kw: $('#kw').val()}
+            });
+        });
+        $('#add-cate').click(function () {
+            window.location.href = "/admin/new-category";
+        });
+    });
+
+});

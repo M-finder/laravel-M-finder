@@ -14,14 +14,13 @@ class Article extends Model {
     public static function common() {
         $article = Article::leftJoin('users', 'users.id', '=', 'articles.uid')
                 ->leftJoin('menus', 'menus.id', '=', 'articles.mid')
-                ->where('status', '=', 2)
                 ->select('articles.*', 'users.name as author', 'users.sign', 'users.avatar', 'users.is_author as author_level', 'menus.name as menu')
                 ->orderBy('articles.id', 'desc');
         return $article;
     }
 
     public static function first_article() {
-        $article = self::common()->first();
+        $article = self::common()->where('status','=',2)->first();
         #已读cookie
         if (!Cookie::has('read' . $article->id) && !is_null($article)) {
             $article->increment('read');
@@ -40,9 +39,13 @@ class Article extends Model {
         
         $uid = request('uid');
         $kw = request('kw');
+        $status = request('status',2);
         
         if (!is_null($uid) && $uid != 0) {
             $model = $model->where('articles.uid', '=', $uid);
+        }
+        if (!is_null($status) && $status != 'all') {
+            $model = $model->where('articles.status', '=', $status);
         }
         if (!is_null($mid) && $mid != 0) {
             $model = $model->where('articles.mid', '=', $mid);

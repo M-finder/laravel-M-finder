@@ -58,7 +58,7 @@ $(function () {
                 , groups: 3
                 , limit: 10
                 , jump: function (obj, first) {
-                    $.post('/cate', {type: 1, mid: id, page: obj.curr}, function (res) {
+                    $.post('/category', {type: 1, mid: id,status:2, page: obj.curr}, function (res) {
                         if (obj.curr != first) {
                             dataDraw(article_tpl, 'article_list', res.data);
                             $("body").animate({scrollTop: $('#article_list').offset().top});

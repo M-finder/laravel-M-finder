@@ -40,7 +40,7 @@
                 <div class="site-content">
                     <section class="post-content">
                         <div class="single-post-inner grap">
-                            {{ $page['content'] }}
+                            {!! $page['content'] !!}
                         </div>
                     </section>
                 </div>

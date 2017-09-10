@@ -29,7 +29,6 @@ class ArticleController extends Controller {
     public function update_article($id = 0) {
         $menus = Menu::select('id', 'name', 'type', 'seo_title', 'seo_describe', 'link')
                         ->where('pid', '=', 0)
-                        ->where('is_show', '=', '2')
                         ->where('type', '=', 0)
                         ->get()->toArray();
         $article = Article::where('id', '=', $id)->first();
@@ -44,6 +43,19 @@ class ArticleController extends Controller {
         $article->title = $data['title'];
         $article->content = $data['content'];
         $article->mid = $data['mid'];
+        $article->save();
+        return $this->json_response(0, "操作成功", $article);
+    }
+    public function publish_article($id=0) {
+        $article = Article::where('id', '=', $id)->first();
+        return view('admin.publish_article')->with('article', $article);
+    }
+    
+    public function save_article() {
+        $data = request('data');
+        $article = Article::where('id', '=', $data['id'])->first();
+        $article->status = $data['status'];
+        $article->reason = $data['reason'];
         $article->save();
         return $this->json_response(0, "操作成功", $article);
     }

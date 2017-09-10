@@ -56,12 +56,24 @@ Route::prefix('admin')->group(function() {
 
 Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::get('/', 'Admin\AdminController@index');
-    Route::get('/update-article/{id}', 'Admin\ArticleController@update_article');
     Route::get('/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
+    Route::get('/update-article/{id}', 'Admin\ArticleController@update_article');
+    Route::get('/publish-article/{id}', 'Admin\ArticleController@publish_article');
+    Route::get('/new-category', 'Admin\MenuController@new_category');
+    Route::get('/update-category/{id}', 'Admin\MenuController@update_category');
+    Route::get('/category', 'Admin\MenuController@category');
+    Route::get('/messages', 'Admin\AdminController@messages');
+    Route::get('/edit-feedback/{id}', 'Admin\AdminController@edit_feedback');
 
     Route::post('/articles', 'Admin\ArticleController@articles');
     Route::post('/edit-article', 'Admin\ArticleController@edit_article');
     Route::post('/delete-article', 'Admin\ArticleController@delete_article');
+    Route::post('/categorys', 'Admin\MenuController@categorys');
+    Route::post('/edit-category', 'Admin\MenuController@edit_category');
+    Route::post('/delete-category', 'Admin\MenuController@delete_category');
+    Route::post('/feedbacks', 'Admin\AdminController@feedbacks');
+    Route::post('/save-feedback', 'Admin\AdminController@save_feedback');
+    Route::post('/save-article', 'Admin\ArticleController@save_article');
 });
 
 

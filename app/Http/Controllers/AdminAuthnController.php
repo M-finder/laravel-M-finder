@@ -34,9 +34,5 @@ class AdminAuthnController extends Controller {
 
         return response()->json(['code'=>1,'msg'=>'用户名或密码错误']);
     }
-    
-    public function logout(){
-        
-    }
 
 }

@@ -89,7 +89,7 @@ class UserController extends AuthController {
     public function feedbacks() {
         $uid =  Auth::user()->id;
         $per_page = request('per_page', 20);
-        $feedbacks = Feedback::where('uid','=',$uid)->paginate($per_page)->toArray();
+        $feedbacks = Feedback::where('uid','=',$uid)->orderBy('id','desc')->paginate($per_page)->toArray();
         foreach($feedbacks['data'] as $k=>$v){
             if($v['mid']==1){
                 $feedbacks['data'][$k]['mid'] = '作者认证';
