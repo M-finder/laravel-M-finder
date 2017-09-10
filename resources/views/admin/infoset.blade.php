@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="layui-form-item login-btn-box" style="margin-left:20px;">
-                        <button class="layui-btn" lay-submit="" lay-filter="infoset-box">提交</button>
+                        <button class="layui-btn" lay-submit="" lay-filter="infoset-box">提交1</button>
                     </div>
                 </form>
             </fieldset>
