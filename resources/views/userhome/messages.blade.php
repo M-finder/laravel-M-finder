@@ -4,7 +4,7 @@
 
 <div class="layui-body">
     <!-- 内容主体区域 -->
-    <div class="layui-col-md6 layui-col-xs8" style="padding: 15px;">
+    <div class="layui-col-md8 layui-col-xs12" style="padding: 15px;">
         <table class="layui-table" lay-filter="messages" lay-data="{url:'/userhome/mymessages',method: 'post', where: {uid: $('#uid').data('uid')},page: true,limit: 20,groups: 3,response: { statusName: 'code', statusCode: 0 , msgName: 'msg' , countName: 'count', dataName: 'data'},}">
             <thead>
                 <tr>
