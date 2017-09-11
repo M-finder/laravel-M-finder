@@ -13,7 +13,8 @@ class CommentController extends Controller {
     #评论数据
 
     public function comment_search() {
-        $article = Article::first_article();
+        $aid = request('aid', 0);
+        $article = Article::find($aid);
         if (is_null($article)) {
             return $this->json_response(1, "数据获取失败。", 0);
         }
