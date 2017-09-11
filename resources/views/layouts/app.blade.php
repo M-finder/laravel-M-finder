@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="content-area container login-content">
+            <div class="content-area container login-content" style="width:100%">
                 @yield('content')
             </div>
         </div>

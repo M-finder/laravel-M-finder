@@ -34,9 +34,9 @@
                     <div class="entry-meta">
                         <time class="entry-date published updated" datetime="{{ $article->created_at }}">{{ $article->created_at }}</time>			
                         <span class="separator">/</span>
-                        {{ $article->read }} 次浏览		
+                        {{ $article->read }} 阅		
                         <span class="separator" >/</span>
-                        <span id='like_num'>{{ $article->like }}</span> 次赞赏		
+                        <span id='like_num'>{{ $article->like }}</span> 赞		
                     </div>
                 </header>
                 <div class="site-content">
