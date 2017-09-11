@@ -89,10 +89,14 @@
             password: [/(.+){6,32}$/, '密码必须6到32位']
         });
         form.on('submit(infoset-box)', function (data) {
-            $.post('/userhome/password_reset',{oldpassword:data.field.oldpassword,password:data.field.password},function(res){
-                console.log(res);
+            $.post('/userhome/password_reset', {oldpassword: data.field.oldpassword, password: data.field.password}, function (res) {
+                if (res.code == 0) {
+                    layer.msg('密码修改', {icon: 1});
+                } else {
+                    layer.msg(res.msg, {icon: 5});
+                }
             });
-            
+
             return false;
         });
     });
