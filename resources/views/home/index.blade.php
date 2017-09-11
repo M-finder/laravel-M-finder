@@ -7,7 +7,7 @@
         <article class="comment-body" id="comment">
             <footer class="comment-meta">
                 <div class="comment-author vcard">
-                    <img src="<% d.data[i].avatar===null ? 'images/avatar/'+parseInt(11*Math.random()) +'.jpg' : d.data[i].avatar %>" width="64" height="64" alt="<% d.data[i].name %>" class="avatar avatar-42 wp-user-avatar wp-user-avatar-42 alignnone photo" />                    						
+                    <img src="<% d.data[i].avatar===null ? '/images/avatar/'+parseInt(11*Math.random()) +'.jpg' : d.data[i].avatar %>" width="64" height="64" alt="<% d.data[i].name %>" class="avatar avatar-42 wp-user-avatar wp-user-avatar-42 alignnone photo" />                    						
                     <b class="fn"><% d.data[i].name %></b><span class="says">：</span>					
                 </div>
                 <div class="comment-metadata">
@@ -50,7 +50,7 @@
                         <a href='javascript:;' onclick="like_this(this)" data-id="{{ $article->id }}"><i class="layui-icon"  style="font-size: 20px; @if( $article->liked )  color:#bc403e @endif ">&#xe6c6;</i> </a> 
                     </div>
                     <div class="author-field u-textAlignCenter">
-                        <img src="{{ isset($article->avatar) ? asset($article->avatar) : 'images/avatar/'.rand(1,11).'.jpg' }}" width="64" height="64" alt="{{ $article->author}}" class="avatar avatar-64 wp-user-avatar wp-user-avatar-64 alignnone photo" />                    
+                        <img src="{{ isset($article->avatar) ? asset($article->avatar) : '/images/avatar/'.rand(1,11).'.jpg' }}" width="64" height="64" alt="{{ $article->author}}" class="avatar avatar-64 wp-user-avatar wp-user-avatar-64 alignnone photo" />                    
                         <h3>
                             {{ $article->author}} 
                         </h3>

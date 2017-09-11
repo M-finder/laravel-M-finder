@@ -51,7 +51,7 @@
                         <a href='javascript:;' onclick="like_this(this)" data-id="{{ $article->id }}"><i class="layui-icon"  style="font-size: 20px; @if( $article->liked )  color:#bc403e @endif ">&#xe6c6;</i> </a> 
                     </div>
                     <div class="author-field u-textAlignCenter">
-                        <img src="{{ isset($article->avatar) ? asset($article->avatar) : 'images/avatar/'.rand(1,11).'.jpg' }}" width="64" height="64" alt="{{ $article->author}}" class="avatar avatar-64 wp-user-avatar wp-user-avatar-64 alignnone photo" />                    
+                        <img src="{{ isset($article->avatar) ? asset($article->avatar) : '/images/avatar/'.rand(1,11).'.jpg' }}" width="64" height="64" alt="{{ $article->author}}" class="avatar avatar-64 wp-user-avatar wp-user-avatar-64 alignnone photo" />                    
                         <h3>{{ $article->author}}</h3>
                             @if($article->author_level==2)
                             <span class="layui-badge-rim layui-bg-orange">管理员 </span>

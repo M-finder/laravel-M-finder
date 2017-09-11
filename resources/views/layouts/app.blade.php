@@ -12,7 +12,7 @@
         <link href="{{ asset('js/layui/css/layui.css') }}" rel="stylesheet">
         <link href="{{ asset('css/global.css') }}" rel="stylesheet">
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-        <link rel="icon" href="http://www.m-finder.com/Public/favicon.ico"> 
+        <link rel="icon" href="{{ asset('/favicon.ico')}}"> 
     </head>
     <body>
         <div class="layui-layout layui-layout-admin">
