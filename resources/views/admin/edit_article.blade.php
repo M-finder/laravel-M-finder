@@ -51,29 +51,6 @@
             $($(".layui-nav-item").children("a[href='/admin/dashboard']")).parent('li').addClass('layui-this');
             layui.use(['form', 'layedit', 'laydate'], function () {
                 var form = layui.form, layer = layui.layer, layedit = layui.layedit;
-                layedit.set({
-                    uploadImage: {
-                        url: '/upload-img' //接口url  {"code": 0 ,"msg": "" ,"data": {"src": "图片路径","title": "图片名称"}
-                        , type: 'post' //默认post
-                    }
-                });
-                var index = layedit.build('content', {
-                    tool: [
-                        'strong' //加粗
-                                , 'italic' //斜体
-                                , 'underline' //下划线
-                                , 'del' //删除线
-                                , '|' //分割线
-                                , 'left' //左对齐
-                                , 'center' //居中对齐
-                                , 'right' //右对齐
-                                , 'link' //超链接
-                                , 'unlink' //清除链接
-                                , 'face' //表情
-                                , 'image' //插入图片
-                                , 'code' //帮助
-                    ]
-                });
                 //自定义验证规则
                 form.verify({
                     title: function (val) {
@@ -85,7 +62,6 @@
                         if (val == '' || $.trim(val).length === 0) {
                             return '内容不能为空';
                         }
-                        layedit.sync(index);
                     }
                 });
                 //事件监听

@@ -70,10 +70,6 @@
                 //事件监听
                 form.on('submit(article-box)', function (data) {
                     var data = data.field;
-                    
-                    data.content = /^\{html\}/.test(data.content)
-                    ? data.content.replace(/^\{html\}/, '')
-                    : layui.fly.content(data.content);
                     $.post('/userhome/edit-article', {data}, function (res) {
                         if (res.code == 0) {
                             layer.msg('操作成功', {icon: 1});
@@ -88,6 +84,8 @@
                     return false;
                 });
             });
+			
+			
 
         </script>
     </div>

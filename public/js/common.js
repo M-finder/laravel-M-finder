@@ -50,5 +50,10 @@ layui.config({
 }).extend({
     fly: 'index'
 }).use('fly', function () {
-    var fly = layui.fly;
+    var fly = layui.fly,layer = layui.layer;
+    layer.photos({
+        photos: '.photos'
+        , zIndex: 9999999999
+        , anim: -1
+    });
 });

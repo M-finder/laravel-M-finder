@@ -67,15 +67,11 @@
                         if (val == '' || $.trim(val).length === 0) {
                             return '内容不能为空';
                         }
-                        layedit.sync(index);
                     }
                 });
                 //事件监听
                 form.on('submit(feedback-box)', function (data) {
                     var data = data.field;
-                    data.content = /^\{html\}/.test(data.content)
-                    ? data.content.replace(/^\{html\}/, '')
-                    : layui.fly.content(data.content);
                     $.post('/userhome/feedback', {data}, function (res) {
                         if (res.code == 0) {
                             layer.msg('操作成功', {icon: 1});

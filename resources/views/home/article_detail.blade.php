@@ -42,7 +42,7 @@
                 </header>
                 <div class="site-content">
                     <section class="post-content">
-                        <div class="single-post-inner grap photos">
+                        <div class="single-post-inner grap detail-body photos">
                             {!! $article->content !!}
                         </div>
                     </section>
