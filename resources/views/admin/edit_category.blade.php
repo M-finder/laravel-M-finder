@@ -36,22 +36,22 @@
                             <label class="layui-form-label">栏目类型</label>
                             <div class="layui-input-block">
                                 <input type="radio" lay-filter="type"  name="type" value="0" title="分类"  @if(isset($menu->type) && $menu->type == 0) checked="" @endif >
-                                <input type="radio" lay-filter="type"  name="type" value="1" title="单页" @if(isset($menu->type) && $menu->type == 1) checked="" @endif >
-                                <input type="radio" lay-filter="type"  name="type" value="2" title="链接" @if(isset($menu->type) && $menu->type == 2) checked="" @endif >
+                                       <input type="radio" lay-filter="type"  name="type" value="1" title="单页" @if(isset($menu->type) && $menu->type == 1) checked="" @endif >
+                                       <input type="radio" lay-filter="type"  name="type" value="2" title="链接" @if(isset($menu->type) && $menu->type == 2) checked="" @endif >
                             </div>
                         </div>
 
                         <div class="layui-form-item" id="link"  @if(isset($menu->type) && $menu->type != 2) style="display:none;" @endif >
-                            <label class="layui-form-label">链接地址</label>
+                             <label class="layui-form-label">链接地址</label>
                             <div class="layui-input-block">
                                 <input type="text" name="link" placeholder="请输入链接地址" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
                         <div class="layui-form-item layui-form-text" id="setcontent" @if(isset($menu->type) && $menu->type != 1) style="display:none;" @endif >
-                            <label class="layui-form-label">单页内容</label>
+                             <label class="layui-form-label">单页内容</label>
                             <div class="layui-input-block ">
-                                <textarea id="content" name="content" lay-verify="content">{{ $menu->content or '' }}</textarea>
+                                <textarea id="comment_text" name="content"  cols="45" rows="8" maxlength="65525" lay-verify="content" aria-required="true" class="layui-textarea fly-editor">{{ $menu->content or '' }}</textarea>
                             </div>
                         </div>
                     </div>

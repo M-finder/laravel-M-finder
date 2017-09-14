@@ -51,7 +51,7 @@
             $($(".layui-nav-item").children("a[href='/userhome/sysconfig']")).parent('li').addClass('layui-this');
             layui.use(['form', 'layedit', 'laydate'], function () {
                 var form = layui.form, layer = layui.layer, layedit = layui.layedit;
-       
+
                 //事件监听
                 form.on('submit(sysconfig-box)', function (data) {
                     var data = data.field;

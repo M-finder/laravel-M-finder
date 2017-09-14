@@ -34,7 +34,7 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">状态说明</label>
                         <div class="layui-input-block ">
-                            <textarea id="reason" name="reason" lay-verify="content">已处理,感谢您的贡献</textarea>
+                            <textarea id="comment_text" name="content"  cols="45" rows="8" maxlength="65525" lay-verify="content" aria-required="true" class="layui-textarea fly-editor">已处理,感谢您的贡献</textarea>
                         </div>
                     </div>
                     <div class="layui-form-item login-btn-box">

@@ -27,9 +27,10 @@
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">内容</label>
-                            <div class="layui-input-block ">
-                                <textarea id="content" name="content" lay-verify="content"></textarea>
+                            <div class="layui-form-item layui-form-text">
+                                <div class="layui-input-block ">
+                                    <textarea id="comment_text" name="content"  cols="45" rows="8" maxlength="65525" lay-verify="content" aria-required="true" class="layui-textarea fly-editor">{{ $article->content or '' }}</textarea>
+                                </div>
                             </div>
                         </div>
 
@@ -60,29 +61,6 @@
 
             layui.use(['form', 'layedit', 'laydate', 'element'], function () {
                 var form = layui.form, layer = layui.layer, layedit = layui.layedit, element = layui.element;
-                layedit.set({
-                    uploadImage: {
-                        url: '/upload-img'
-                        , type: 'post'
-                    }
-                });
-                var index = layedit.build('content', {
-                    tool: [
-                        'strong' //加粗
-                                , 'italic' //斜体
-                                , 'underline' //下划线
-                                , 'del' //删除线
-                                , '|' //分割线
-                                , 'left' //左对齐
-                                , 'center' //居中对齐
-                                , 'right' //右对齐
-                                , 'link' //超链接
-                                , 'unlink' //清除链接
-                                , 'face' //表情
-                                , 'image' //插入图片
-                                , 'code' //帮助
-                    ]
-                });
                 //自定义验证规则
                 form.verify({
                     content: function (val) {
@@ -95,6 +73,9 @@
                 //事件监听
                 form.on('submit(feedback-box)', function (data) {
                     var data = data.field;
+                    data.content = /^\{html\}/.test(data.content)
+                    ? data.content.replace(/^\{html\}/, '')
+                    : layui.fly.content(data.content);
                     $.post('/userhome/feedback', {data}, function (res) {
                         if (res.code == 0) {
                             layer.msg('操作成功', {icon: 1});

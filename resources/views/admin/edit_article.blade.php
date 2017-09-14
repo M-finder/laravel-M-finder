@@ -23,7 +23,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">所属分类</label>
                             <div class="layui-input-inline">
@@ -35,9 +35,8 @@
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">文章内容</label>
                             <div class="layui-input-block ">
-                                <textarea id="content" name="content" lay-verify="content">{{ $article->content or '' }}</textarea>
+                                <textarea id="comment_text" name="content"  cols="45" rows="8" maxlength="65525" lay-verify="content" aria-required="true" class="layui-textarea fly-editor">{{ $article->content or '' }}</textarea>
                             </div>
                         </div>
 
