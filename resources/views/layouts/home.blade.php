@@ -10,7 +10,9 @@
         <title>{{ $web_info->web_name }} - {{ $web_info->web_title }}</title>
         <script src="{{ asset('js/layui/layui.js') }}"></script>
         <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        
+        <script src="{{ asset('js/common.js') }}"></script>
+        <script src="{{ asset('js/home.js') }}"></script>
+        <script src="{{ asset('js/musicplayer.js') }}"></script>
         <link href="{{ asset('js/layui/css/layui.css') }}" rel="stylesheet">
         <link href="{{ asset('css/global.css') }}" rel="stylesheet">
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">
@@ -59,9 +61,7 @@
 
         <div class="main layui-clear ">
             @yield('content')
-        </div>
-        <script src="{{ asset('js/common.js') }}"></script>
-        <script src="{{ asset('js/home.js') }}"></script>
+        </div>        
         @extends('home.footer') 
 
 
