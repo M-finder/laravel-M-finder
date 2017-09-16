@@ -11,7 +11,7 @@ class Comment extends Model {
     #评论搜索
 
     public static function search($article_id) {
-        $per_page = request('per_page', 5);
+        $per_page = request('limit', 5);
         $comments = Comment::select('comments.*', 'users.name', 'users.avatar')
                 ->leftJoin('users', 'users.id', '=', 'comments.uid')
                 ->where('comments.aid', '=', $article_id)
