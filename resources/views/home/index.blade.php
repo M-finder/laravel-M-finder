@@ -68,8 +68,8 @@
         <div class="site-content" style='padding-top:5px;'>
             <div class="content-area container">
                 <div id="comments" class="comments-area">
-                    <h2 class="comments-title layui-hide" id='comment-title'>条评论</h2>                        
-                    <ol class="comment-list layui-hide "  id='comment_list'></ol>
+                    <h2 class="comments-title" id='comment-title'>条评论</h2>                        
+                    <ol class="comment-list"  id='comment_list'></ol>
                     <section class="post-content" >
                         <div class="single-post-inner grap">
                             <div id="comment-page" ></div>

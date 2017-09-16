@@ -70,6 +70,7 @@
                 //事件监听
                 form.on('submit(article-box)', function (data) {
                     var data = data.field;
+                    console.log(data);
                     $.post('/userhome/edit-article', {data}, function (res) {
                         if (res.code == 0) {
                             layer.msg('操作成功', {icon: 1});

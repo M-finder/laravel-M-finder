@@ -9,6 +9,7 @@
         <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('js/common.js') }}"></script>
         <script src="{{ asset('js/admin.js') }}"></script>
+        <script src="{{ asset('js/musicplayer.js') }}"></script>
         <link href="{{ asset('js/layui/css/layui.css') }}" rel="stylesheet">
         <link href="{{ asset('css/global.css') }}" rel="stylesheet">
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">

@@ -77,3 +77,45 @@ body .layui-edit-face  .layui-layer-content{padding:0; background-color:#fff; co
 .layui-edit-face ul{position:relative; width:372px; padding:10px; border:1px solid #D9D9D9; background-color:#fff; box-shadow: 0 0 20px rgba(0,0,0,.2);}
 .layui-edit-face ul li{cursor: pointer; float: left; border: 1px solid #e8e8e8; height: 22px; width: 26px; overflow: hidden; margin: -1px 0 0 -1px; padding: 4px 2px; text-align: center;}
 .layui-edit-face ul li:hover{position: relative; z-index: 2; border: 1px solid #eb7350; background: #fff9ec;}
+.layui-music-input{margin-bottom: 10px;}
+
+
+/*html5mp3*/
+.player{width:350px;height:64px;position:relative;margin:10px auto 0;background-color: #0078AD;font-size:12px;font-family:monospace;}
+.player li {list-style: none!important;margin:0!important;}
+.musicplayerslogo{height: 60px;}
+.musicplayersavatar{float:left;height:60px;width:60px;}
+.musicplayersavatar img{max-width: 100%;}
+.statusinfo{margin:20px 15px 0;width:190px;float:left;color:#ffffff;text-overflow:ellipsis}
+.statusinfo .playericon-play{background:url(../images/playing.png);width:10px;height:10px;display:inline-block;margin:0 10px 0 0;}
+.statusinfo .playericon-playing{background:url(../images/playing.gif);width:10px;height:10px;display:inline-block;margin:0 10px 0 0;}
+.simple-player-container {}
+.simple-player-container > div > ul {margin: 0;padding-left: 0;}
+.simpleplayer-play-control {font: normal normal normal 36px/1 FontAwesome;cursor: pointer;display: block;width: 36px;height: 36px;right: 10px;color:#fff;opacity: 0.7;}
+.simpleplayer-play-control{background: url(../images/play.png);}
+.simpleplayer-stop-control {font: normal normal normal 36px/1 FontAwesome;cursor: pointer;display: block;width: 36px;height: 36px;right: 15px;color:#fff;opacity: 0.7;animation:Roll 5s;-moz-animation:Roll 5s infinite linear; /* Firefox */-webkit-animation:Roll 5s infinite linear; /* Safari and Chrome */-o-animation:Roll 5s infinite linear; /* Opera */}
+.simpleplayer-stop-control{background: url(../images/pause.png);}
+.simple-player-container .progressbar-wrapper{height: 4px;position: absolute;bottom: 0;padding:0px;}
+@media (max-width:640px){
+    .player{width:250px;}
+    .statusinfo{width:150px}
+}
+@keyframes Roll{
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+@-moz-keyframes Roll /* Firefox */{
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+@-webkit-keyframes Roll /* Safari and Chrome */{
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+@-o-keyframes Roll /* Opera */{
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}

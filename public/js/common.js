@@ -50,10 +50,25 @@ layui.config({
 }).extend({
     fly: 'index'
 }).use('fly', function () {
-    var fly = layui.fly,layer = layui.layer;
+    var fly = layui.fly, layer = layui.layer, util = layui.util;
+    $('.detail-body').each(function () {
+        var othis = $(this), html = othis.html();
+        othis.html(fly.content(html));
+    });
+    $('time').each(function (index, item) {
+        $(item).text(util.timeAgo($(item).text()));
+    });
     layer.photos({
         photos: '.photos'
         , zIndex: 9999999999
         , anim: -1
     });
+    var settings = {
+        progressbarWidth: "100%",
+        progressbarHeight: "3px",
+        progressbarColor: "#22ccff",
+        progressbarBGColor: "#eeeeee",
+        defaultVolume: 0.8
+    };
+    $(".playerd").player(settings);
 });
