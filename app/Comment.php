@@ -28,7 +28,7 @@ class Comment extends Model {
         $inputs['uid'] = Auth::user()->id;
         $inputs['status'] = 0;
         
-        $article = Article::where('id', '=', $inputs['aid'])->select('uid','title')->first();
+        $article = Article::where('id', '=', $inputs['aid'])->select('id','uid','title')->first();
         if ($inputs['reply_uids'] != null) {
             $ids = array_filter(explode(",", $inputs['reply_uids']));
             if ($ids) {
