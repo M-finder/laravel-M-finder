@@ -39,7 +39,7 @@ class UserController extends AuthController {
 
     public function mymessages() {
         $uid = request('uid');
-        $per_page = request('per_page', 20);
+        $per_page = request('limit', 20);
         $msg = Message::where('uid', '=', $uid)->paginate($per_page)->toArray();
         return response()->json(['code' => 0, 'msg' => '操作成功', 'count' => $msg['total'], 'data' => $msg['data']]);
     }
@@ -88,7 +88,7 @@ class UserController extends AuthController {
 
     public function feedbacks() {
         $uid =  Auth::user()->id;
-        $per_page = request('per_page', 20);
+        $per_page = request('limit', 20);
         $feedbacks = Feedback::where('uid','=',$uid)->orderBy('id','desc')->paginate($per_page)->toArray();
         foreach($feedbacks['data'] as $k=>$v){
             if($v['mid']==1){

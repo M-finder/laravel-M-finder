@@ -13,7 +13,7 @@ class UserController extends Controller {
     }
 
     public function users() {
-        $per_page = request('per_page', 20);
+        $per_page = request('limit', 20);
         $kw = request('kw');
 
         $model = User::orderBy('id', 'desc');

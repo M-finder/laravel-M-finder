@@ -34,7 +34,7 @@ class Article extends Model {
     }
 
     public static function articles($mid=0) {
-        $per_page = request('per_page', 20);
+        $per_page = request('limit', 20);
         $model = self::common();
         
         $uid = request('uid');

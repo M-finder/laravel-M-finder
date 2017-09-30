@@ -28,7 +28,7 @@ class AdminController extends Controller {
     }
 
     public function feedbacks() {
-        $per_page = request('per_page', 20);
+        $per_page = request('limit', 20);
         $feedbacks = Feedback::leftJoin('users', 'users.id', '=', 'feedback.uid')->select('feedback.*', 'users.name')->orderBy('feedback.id', 'desc')->paginate($per_page)->toArray();
         foreach ($feedbacks['data'] as $k => $v) {
             if ($v['mid'] == 1) {
@@ -76,7 +76,7 @@ class AdminController extends Controller {
     }
 
     public function get_links() {
-        $per_page = request('per_page', 20);
+        $per_page = request('limit', 20);
         $links = Link::orderBy('id', 'desc')->paginate($per_page)->toArray();
 
         return response()->json(['code' => 0, 'msg' => '操作成功', 'count' => $links['total'], 'data' => $links['data']]);

@@ -12,7 +12,7 @@ class CommentController extends Controller
         return view('admin.comments');
     }
     public function get_comments(){
-        $per_page = request('per_page', 20);
+        $per_page = request('limit', 20);
         $comments = Comment::leftJoin('articles','articles.id','=','comments.aid')
                 ->leftjoin('users','users.id','=','comments.uid')
                 ->select('articles.title','comments.*','users.name')
