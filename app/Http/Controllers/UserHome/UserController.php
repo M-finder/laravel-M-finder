@@ -40,7 +40,7 @@ class UserController extends AuthController {
     public function mymessages() {
         $uid = request('uid');
         $per_page = request('limit', 20);
-        $msg = Message::where('uid', '=', $uid)->paginate($per_page)->toArray();
+        $msg = Message::where('uid', '=', $uid)->orderBy('id','desc')->paginate($per_page)->toArray();
         return response()->json(['code' => 0, 'msg' => '操作成功', 'count' => $msg['total'], 'data' => $msg['data']]);
     }
 
