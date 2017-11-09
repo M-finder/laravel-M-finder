@@ -29,22 +29,22 @@
 <div id="main" class="content homepage" data-cid="{{ $id }}">    
     <div class="content-area container">
         <div class="site-content" id="article_list">
-            @foreach($articles as $article)
+            @foreach($articles as $art)
             <article class="post-item">
                 <div class="info-mask">
                     <div class="mask-wrapper">
                         <h2 class="post-title layui-elip">
-                            <a href="/home/article-detail/{{ $article->id }}" title="{{ $article->title }}">{{ $article->title }}</a>
+                            <a href="/home/article-detail/{{ $article->id }}" title="{{ $article->title }}">{{ $art->title }}</a>
                         </h2>
-                        <div class="post-info"><span class="post-time"><time>{{ $article->created_at }}</time></span>
+                        <div class="post-info"><span class="post-time"><time>{{ $art->created_at }}</time></span>
                             <span class="middotDivider"></span>
-                            <span class="post-tags">{{ $article->menu }}</span>
+                            <span class="post-tags">{{ $art->menu }}</span>
                             <span class="middotDivider"></span>
-                            <span class="post-author">Author - {{ $article->author }}</span>
+                            <span class="post-author">Author - {{ $art->author }}</span>
                             <span class="middotDivider"></span>
-                            <span class="post-read"><i class="iconfont icon-liulanyanjing"></i> - {{ $article->read }}</span>
+                            <span class="post-read"><i class="iconfont icon-liulanyanjing"></i> - {{ $art->read }}</span>
                             <span class="middotDivider"></span>
-                            <span class="post-like"><i class="layui-icon" >&#xe6c6;</i> - {{ $article->like }}</span>
+                            <span class="post-like"><i class="layui-icon" >&#xe6c6;</i> - {{ $art->like }}</span>
                         </div>
                     </div>
                 </div>
