@@ -20,5 +20,5 @@ Begin
 * php artisan db:seed
 * ok
 
-powered by M-finder
+M-finder
 www.m-finder.com
