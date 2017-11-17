@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.index')
 
 @section('content')
 <script id="comment_tpl" type="text/html">

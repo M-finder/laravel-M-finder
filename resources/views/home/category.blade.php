@@ -34,7 +34,7 @@
                 <div class="info-mask">
                     <div class="mask-wrapper">
                         <h2 class="post-title layui-elip">
-                            <a href="/home/article-detail/{{ $article->id }}" title="{{ $article->title }}">{{ $art->title }}</a>
+                            <a href="/home/article-detail/{{ $art->id }}" title="{{ $art->title }}">{{ $art->title }}</a>
                         </h2>
                         <div class="post-info"><span class="post-time"><time>{{ $art->created_at }}</time></span>
                             <span class="middotDivider"></span>
