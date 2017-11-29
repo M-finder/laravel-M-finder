@@ -63,13 +63,13 @@ $(function () {
 
     var total = $('#page').data('total');
 
-    if (total > 10) {
+    if (total > 20) {
         layui.use(['laypage', 'util'], function () {
             layui.laypage.render({
                 elem: 'page'
                 , count: total
                 , groups: 3
-                , limit: 10
+                , limit: 20
                 , jump: function (obj, first) {
                     $.post('/category', {type: 1, mid: id, status: 2, page: obj.curr}, function (res) {
                         if (obj.curr != first) {
