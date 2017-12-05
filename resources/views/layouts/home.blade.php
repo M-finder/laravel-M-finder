@@ -7,7 +7,7 @@
         <meta name="keywords" content="{{ $web_info->web_keywords }}"/>
         <meta name="description" content="{{ $web_info->web_description }}"/>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ $web_info->web_name }} - {{ $web_info->web_title }} {{ $art->menu or '' }} {{ $article->title or '' }} {{ $page['name'] or '' }}</title>
+        <title>{{ $web_info->web_name }} - {{ $web_info->web_title }} -  {{ $art->menu or '' }} {{ $article->title or '' }} {{ $page['name'] or '' }}</title>
         <script src="{{ asset('js/layui/layui.js') }}"></script>
         <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('js/common.js') }}"></script>
