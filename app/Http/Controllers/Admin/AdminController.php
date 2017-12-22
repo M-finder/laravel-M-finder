@@ -20,11 +20,11 @@ class AdminController extends Controller {
     }
 
     public function dashboard() {
-        return view('admin.dashboard');
+        return view('admin.dashboard')->with('url','dashboard');
     }
 
     public function messages() {
-        return view('admin.contact_back');
+        return view('admin.contact_back')->with('url','messages');
     }
 
     public function feedbacks() {
@@ -58,7 +58,7 @@ class AdminController extends Controller {
 
     public function edit_feedback($id = 0) {
         $feedback = Feedback::find($id);
-        return view('admin.edit_feedback')->with('feedback', $feedback);
+        return view('admin.edit_feedback')->with('feedback', $feedback)->with('url','contact-back');;
     }
 
     public function save_feedback() {
@@ -72,7 +72,7 @@ class AdminController extends Controller {
     }
 
     public function links() {
-        return view('admin.links');
+        return view('admin.links')->with('url','links');
     }
 
     public function get_links() {
@@ -118,7 +118,7 @@ class AdminController extends Controller {
 
     public function sysconfig() {
         $sysconfig = SysConfig::find(1);
-        return view('admin.sysconfig')->with('sysconfig', $sysconfig);
+        return view('admin.sysconfig')->with('sysconfig', $sysconfig)->with('url','sysconfig');
     }
 
     public function edit_sysconfig() {
@@ -133,7 +133,7 @@ class AdminController extends Controller {
     }
 
     public function infoset() {
-        return view('admin.infoset');
+        return view('admin.infoset')->with('url','infoset');
     }
 
     public function password_reset() {

@@ -3,27 +3,31 @@
 @section('content')
 
 <script id="article_tpl" type="text/html">
-    <%# for(var i = 0; i < d.data.length; i++){  %>
+    @{{# for(var i = 0; i < d.data.length; i++){  }}
     <article class="post-item">
         <div class="info-mask">
             <div class="mask-wrapper">
                 <h2 class="post-title layui-elip">
-                    <a href="/home/article-detail/<% d.data[i].id %>" title="<% d.data[i].title %>"><% d.data[i].title %></a>
+                    <a href="/home/article-detail/@{{ d.data[i].id }}" title="@{{ d.data[i].title }}">@{{ d.data[i].title }}</a>
                 </h2>
-                <div class="post-info"><span class="post-time"><time><% layui.util.timeAgo(d.data[i].created_at)  %></time></span>
+                <div class="post-info">
+                    <span class="post-time"><time>@{{ layui.util.timeAgo(d.data[i].created_at)  }}</time></span>
+                    <span class="post-time middotDivider"></span>
+                    <span class="post-tags">@{{ d.data[i].menu }}</span>
                     <span class="middotDivider"></span>
-                    <span class="post-tags"><% d.data[i].menu %></span>
+                    <span class="post-author">Author - @{{ d.data[i].author }}</span>
                     <span class="middotDivider"></span>
-                    <span class="post-author">Author - <% d.data[i].author %></span>
+                    <span class="post-read"><i class="iconfont icon-liulanyanjing"></i> - @{{ d.data[i].read }}</span>
                     <span class="middotDivider"></span>
-                    <span class="post-read"><i class="iconfont icon-liulanyanjing"></i> - <% d.data[i].read %></span>
-                    <span class="middotDivider"></span>
-                    <span class="post-like"><i class="layui-icon" >&#xe6c6;</i> - <% d.data[i].like %></span>
+                    <span class="post-like"><i class="layui-icon" >&#xe6c6;</i> - @{{ d.data[i].like }}</span>
+                </div>
+                <div class="post-info">
+                    @{{ d.data[i].content }}
                 </div>
             </div>
         </div>
     </article>
-    <%# } %>
+    @{{# } }}
 </script>
 
 <div id="main" class="content homepage" data-cid="{{ $id }}">    
@@ -36,8 +40,9 @@
                         <h2 class="post-title layui-elip">
                             <a href="/home/article-detail/{{ $art->id }}" title="{{ $art->title }}">{{ $art->title }}</a>
                         </h2>
-                        <div class="post-info"><span class="post-time"><time>{{ $art->created_at }}</time></span>
-                            <span class="middotDivider"></span>
+                        <div class="post-info">
+                            <span class="post-time"><time>{{ $art->created_at }}</time></span>
+                            <span class="post-time middotDivider"></span>
                             <span class="post-tags">{{ $art->menu }}</span>
                             <span class="middotDivider"></span>
                             <span class="post-author">Author - {{ $art->author }}</span>
@@ -45,6 +50,9 @@
                             <span class="post-read"><i class="iconfont icon-liulanyanjing"></i> - {{ $art->read }}</span>
                             <span class="middotDivider"></span>
                             <span class="post-like"><i class="layui-icon" >&#xe6c6;</i> - {{ $art->like }}</span>
+                        </div>
+                        <div class="post-info">
+                            {!! $art->content !!}
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ class Comment extends Model {
         $comments = Comment::select('comments.*', 'users.name', 'users.avatar')
                 ->leftJoin('users', 'users.id', '=', 'comments.uid')
                 ->where('comments.aid', '=', $article_id)
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->paginate($per_page);
         return $comments;
     }
@@ -24,10 +24,9 @@ class Comment extends Model {
         Cookie::queue('hasCom' . "{$token}", $token, 10);
         $inputs['aid'] = request('aid');
         $inputs['reply_uids'] = request('reply_uids', null);
-        $inputs['content'] = request('val');
+        $inputs['content'] = request('content');
         $inputs['uid'] = Auth::user()->id;
         $inputs['status'] = 0;
-        
         $article = Article::where('id', '=', $inputs['aid'])->select('id','uid','title')->first();
         if ($inputs['reply_uids'] != null) {
             $ids = array_filter(explode(",", $inputs['reply_uids']));
@@ -36,7 +35,7 @@ class Comment extends Model {
                     $message['uid'] = $id;
                     $message['status'] = 0;
                     $message['type'] = 0;
-                    $message['title'] = '<a>' . Auth::user()->name . '</a>' . '在<a href="/home/article-detail/' . $article->id . '" target="_blade">' . $article->title . '</a>中回复了你';
+                    $message['title'] = '<a>' . Auth::user()->name . '</a>' . '在<a href="/home/article-detail/' . $article->id . '" target="_blade">《' . $article->title . '》</a>中回复了你';
                     $message['content'] = $inputs['content'];
                     Message::create($message);
                 }

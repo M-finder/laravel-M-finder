@@ -16,7 +16,7 @@ class ArticleController extends AuthController {
         $type = request('type');
         $articles = Article::articles()->toArray();
         foreach ($articles['data'] as $k => $v) {
-            if ($v['status'] == 0) {
+            if ($v['status'] == 0 || $v['status']=='') {
                 $articles['data'][$k]['status'] = '未审核';
             }
             if ($v['status'] == 1) {
@@ -30,24 +30,25 @@ class ArticleController extends AuthController {
     }
 
     public function new_article() {
-        $menus = Menu::select('id', 'name', 'type', 'seo_title', 'seo_describe', 'link')
+        $menus = Menu::select('id', 'name', 'type', 'link')
                         ->where('pid', '=', 0)
                         ->where('is_show', '=', '2')
                         ->where('type', '=', 0)
                         ->get()->toArray();
         return view('userhome.edit_article')
                         ->with('token', md5('Comment' . time()))
-                        ->with('menus', $menus);
+                        ->with('menus', $menus)
+                        ->with('url', '/new-article');
     }
 
     public function update_article($id = 0) {
-        $menus = Menu::select('id', 'name', 'type', 'seo_title', 'seo_describe', 'link')
+        $menus = Menu::select('id', 'name', 'type', 'link')
                         ->where('pid', '=', 0)
                         ->where('is_show', '=', '2')
                         ->where('type', '=', 0)
                         ->get()->toArray();
         $article = Article::where('id', '=', $id)->first();
-        return view('userhome.edit_article')->with('menus', $menus)->with('article', $article);
+        return view('userhome.edit_article')->with('menus', $menus)->with('article', $article)->with('url','/new-articles');
     }
 
     public function edit_article() {

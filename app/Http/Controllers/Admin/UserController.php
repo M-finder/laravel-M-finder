@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller {
 
     public function user() {
-        return view('admin.users');
+        return view('admin.users')->with('url','users');
     }
 
     public function users() {
@@ -37,7 +37,7 @@ class UserController extends Controller {
 
     public function edit_user($id = 0) {
         $user = User::find($id);
-        return view('admin.edit_user')->with('user', $user);
+        return view('admin.edit_user')->with('user', $user)->with('url','users');
     }
 
     public function save_user() {

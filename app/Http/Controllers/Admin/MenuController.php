@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class MenuController extends Controller {
 
     public function category() {
-        return view('admin.category');
+        return view('admin.category')->with('url','category');
     }
 
     public function categorys() {
@@ -36,12 +36,12 @@ class MenuController extends Controller {
     }
 
     public function new_category() {
-        return view('admin.edit_category')->with('token',md5('Menu'.time()));
+        return view('admin.edit_category')->with('token',md5('Menu'.time()))->with('url','category');
     }
 
     public function update_category($id = 0) {
         $menu = Menu::where('id', '=', $id)->first();
-        return view('admin.edit_category')->with('menu', $menu);
+        return view('admin.edit_category')->with('menu', $menu)->with('url','category');
     }
 
     public function edit_category() {
@@ -66,8 +66,6 @@ class MenuController extends Controller {
             $menu->is_show = $data['is_show'];
             $menu->type = $data['type'];
             $menu->content = $data['content'];
-            $menu->seo_title = $data['seo_title'];
-            $menu->seo_describe = $data['seo_describe'];
             $menu->save();
             return $this->json_response(0, "操作成功", $menu);
         }

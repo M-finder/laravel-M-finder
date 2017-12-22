@@ -20,7 +20,7 @@ class Article extends Model {
     }
 
     public static function first_article() {
-        $article = self::common()->where('status','=',2)->first();
+        $article = self::common()->where('status', '=', 2)->first();
         #已读cookie
         if (!Cookie::has('read' . $article->id) && !is_null($article)) {
             $article->increment('read');
@@ -33,14 +33,17 @@ class Article extends Model {
         return $article;
     }
 
-    public static function articles($mid=0) {
+    public static function articles($mid = 0) {
         $per_page = request('limit', 20);
         $model = self::common();
-        
+
         $uid = request('uid');
         $kw = request('kw');
-        $status = request('status',2);
-        
+        $status = request('status', 2);
+
+        $field = request('field', 'id');
+        $type = request('order', 'desc');
+
         if (!is_null($uid) && $uid != 0) {
             $model = $model->where('articles.uid', '=', $uid);
         }
@@ -51,10 +54,10 @@ class Article extends Model {
             $model = $model->where('articles.mid', '=', $mid);
         }
         if (!is_null($kw)) {
-            $model = $model->where('articles.title', 'like', '%'.$kw.'%');
+            $model = $model->where('articles.title', 'like', '%' . $kw . '%');
         }
 
-        $articles = $model->paginate($per_page);
+        $articles = $model->orderBy($field, $type)->paginate($per_page);
         return $articles;
     }
 

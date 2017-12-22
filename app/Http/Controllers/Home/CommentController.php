@@ -31,6 +31,7 @@ class CommentController extends Controller {
             $token = request('token');
             if ($token != Cookie::get('hasCom' . $token)) {
                 $new_comment = Comment::new_comment($token);
+                $new_comment->token =  md5('Comment' . time());
             } else {
                 return $this->json_response(1, "请勿重复提交", 0);
             }

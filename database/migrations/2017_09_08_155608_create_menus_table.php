@@ -19,8 +19,6 @@ class CreateMenusTable extends Migration
             $table->string('name', 20);
             $table->integer('type')->comment('类型,0-分类,1-单页,2-链接');
             $table->integer('is_show')->comment('1,隐藏 2，显示');
-            $table->string('seo_title', 50)->nullable();
-            $table->string('seo_describe')->nullable();
             $table->string('link')->nullable();
             $table->text('content')->nullable();
             $table->timestamps();

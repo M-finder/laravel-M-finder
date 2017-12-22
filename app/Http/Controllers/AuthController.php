@@ -21,7 +21,7 @@ class AuthController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('userhome.articles');
+        return view('userhome.articles')->with('url','/userhome');
     }
 
 }

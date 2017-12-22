@@ -6,24 +6,19 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.web_name', 'M-finder') }} - {{ config('app.web_title', 'M-finder') }}</title>
         <script src="{{ asset('js/layui/layui.js') }}"></script>
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <script src="{{ asset('js/common.js') }}"></script>
-        <script src="{{ asset('js/home.js') }}"></script>
-        <script src="{{ asset('js/musicplayer.js') }}"></script>
         <link href="{{ asset('js/layui/css/layui.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/global.css') }}" rel="stylesheet">
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-        <link rel="icon" href="{{ asset('/favicon.ico')}}"> 
+        <link rel="icon" href="{{ asset('/favicon.ico')}}">
     </head>
     <body>
         <div class="layui-layout layui-layout-admin">
-            <div class="layui-header">
+            <div class="layui-header ">
                 <div class="layui-logo">
                     <a class="navbar-brand" href="{{ url('/') }}">M-finder</a>
                 </div>
             </div>
 
-            <div class="content-area container login-content" style="width:100%">
+            <div id="blog-main" class=" content-area container login-content" style="width:100%">
                 @yield('content')
             </div>
         </div>
@@ -45,5 +40,26 @@
                 Powered by <a href="http://www.m-finder.com" target="_blank">M-finder</a> 
             </div>
         </footer>
+        <script src="{{ asset('js/nprogress.js') }}"></script>
+        <script type="text/javascript">
+            layui.config({
+                base: '/js/'
+                ,version: false
+            }).extend({
+                home: 'home',
+                pjax:'pjax'
+            }).use(['home','pjax'],function (){
+                var $ = layui.jquery;
+                $(function () {
+                    $(document).pjax('a', '#blog-main');
+                    $(document).on('pjax:start', function () {
+                        NProgress.start();
+                    });
+                    $(document).on('pjax:end', function () {
+                        NProgress.done();
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

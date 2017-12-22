@@ -13,13 +13,14 @@
 
 Route::get('/', 'Home\IndexController@index');
 
-Route::post('/comment_search', 'Home\CommentController@comment_search');
+Route::post('/comments', 'Home\CommentController@comment_search');
 Route::post('/comment', 'Home\CommentController@comment');
 Route::post('/like', 'Home\ArticleController@like');
 
 Route::prefix('home')->group(function () {
     Route::get('/', 'Home\IndexController@index')->name('home');
     Route::get('/category/{id}', 'Home\CategoryController@category');
+    Route::post('/category', 'Home\CategoryController@category');
     Route::get('/single-page/{id}', 'Home\CategoryController@single_page');
     Route::get('/article-detail/{id}', 'Home\ArticleController@article_detail');
 });
@@ -69,7 +70,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::get('/edit-user/{id}', 'Admin\UserController@edit_user');
     Route::get('/links', 'Admin\AdminController@links');
     Route::get('/edit-links/{id?}', 'Admin\AdminController@edit_links');
-    Route::get('/syscoonfig', 'Admin\AdminController@sysconfig');
+    Route::get('/sysconfig', 'Admin\AdminController@sysconfig');
     Route::get('/comments', 'Admin\CommentController@comments');
 
     Route::post('/articles', 'Admin\ArticleController@articles');

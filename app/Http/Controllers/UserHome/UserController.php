@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends AuthController {
 
     public function myarticles() {
-        return view('userhome.myarticles');
+        return view('userhome.myarticles')->with('url','/myarticles');
     }
 
     public function infoset() {
-        return view('userhome.infoset');
+        return view('userhome.infoset')->with('url','/infoset');
     }
 
     public function message() {
@@ -34,7 +34,7 @@ class UserController extends AuthController {
     }
 
     public function messages() {
-        return view('userhome.messages');
+        return view('userhome.messages')->with('url','/messages');
     }
 
     public function mymessages() {
@@ -67,7 +67,7 @@ class UserController extends AuthController {
     }
 
     public function contact_back() {
-        return view('userhome.contact_back')->with('token', md5('feedback' . time()));
+        return view('userhome.contact_back')->with('token', md5('feedback' . time()))->with('url','/contact-back');
     }
 
     public function feedback() {

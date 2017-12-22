@@ -6,12 +6,7 @@
         <title>{{ $web_info->web_name }} - {{ $web_info->web_title }}</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('js/layui/layui.js') }}"></script>
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <script src="{{ asset('js/common.js') }}"></script>
-        <script src="{{ asset('js/admin.js') }}"></script>
-        <script src="{{ asset('js/musicplayer.js') }}"></script>
         <link href="{{ asset('js/layui/css/layui.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/global.css') }}" rel="stylesheet">
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">
         <link rel="icon" href="{{ asset('/favicon.ico')}}"> 
     </head>
@@ -48,30 +43,30 @@
                 <div class="layui-side-scroll">
                     <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                     <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                        <li class="layui-nav-item layui-nav-itemed">
+                        <li class="layui-nav-item {{ $url == 'dashboard' ? 'layui-this' : '' }}">
                             <a class="" href="/admin/dashboard">所有文章</a>
                         </li>
-                        <li class="layui-nav-item layui-nav-itemed">
+                        <li class="layui-nav-item {{ $url == 'comments' ? 'layui-this' : '' }}">
                             <a class="" href="/admin/comments">所有评论</a>
                         </li>
-                        <li class="layui-nav-item layui-nav-itemed">
+                        <li class="layui-nav-item {{ $url == 'category' ? 'layui-this' : '' }}">
                             <a class="" href="/admin/category">分类管理</a>
                         </li>
-                        <li class="layui-nav-item layui-nav-itemed">
+                        <li class="layui-nav-item {{ $url == 'users' ? 'layui-this' : '' }}">
                             <a class="" href="/admin/user">用户管理</a>
                         </li>
-                        
-                        <li class="layui-nav-item layui-nav-itemed">
+
+                        <li class="layui-nav-item {{ $url == 'messages' ? 'layui-this' : '' }}">
                             <a class="" href="/admin/messages">后台消息</a>
                         </li>
-                        <li class="layui-nav-item layui-nav-itemed">
+                        <li class="layui-nav-item {{ $url == 'infoset' ? 'layui-this' : '' }}">
                             <a class="" href="/admin/infoset">个人设置</a>
                         </li>
-                        <li class="layui-nav-item layui-nav-itemed">
+                        <li class="layui-nav-item {{ $url == 'links' ? 'layui-this' : '' }}">
                             <a class="" href="/admin/links">友情链接</a>
                         </li>
-                        <li class="layui-nav-item layui-nav-itemed">
-                            <a class="" href="/admin/syscoonfig">网站设置</a>
+                        <li class="layui-nav-item {{ $url == 'sysconfig' ? 'layui-this' : '' }}">
+                            <a class="" href="/admin/sysconfig">网站设置</a>
                         </li>
                     </ul>
 
@@ -82,16 +77,35 @@
             </div>
             <div class="site-mobile-shade"></div>
 
-            @yield('admincontent')
+            <div class="layui-body" id="layui-body">
+                @yield('content')
+            </div>
 
             <div class="layui-footer">
                 © {{ $web_info->web_name }} - {{ $web_info->web_title }}
             </div>
         </div>
-        <script>
-            layui.use('element', function () {
-                var element = layui.element;
-
+        
+        <script src="{{ asset('js/nprogress.js') }}"></script>
+        <script type="text/javascript">
+            layui.config({
+                base: '/js/'
+                ,version: false
+            }).extend({
+                admin: 'admin',
+                pjax:'pjax'
+            }).use(['admin','pjax'],function (){
+                var $ = layui.jquery;
+                $(function () {
+                    $(document).pjax('a', '#layui-body');
+                   
+                    $(document).on('pjax:start', function () {
+                        NProgress.start();
+                    });
+                    $(document).on('pjax:end', function () {
+                        NProgress.done();
+                    });
+                });
             });
         </script>
     </body>

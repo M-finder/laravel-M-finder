@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class CommentController extends Controller
 {
     public function comments(){
-        return view('admin.comments');
+        return view('admin.comments')->with('url','comments');
     }
     public function get_comments(){
         $per_page = request('limit', 20);

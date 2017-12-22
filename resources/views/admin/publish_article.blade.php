@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,11 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="{{ asset('js/layui/layui.js') }}"></script>
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <script src="{{ asset('js/common.js') }}"></script>
-        <script src="{{ asset('js/admin.js') }}"></script>
         <link href="{{ asset('js/layui/css/layui.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/global.css') }}" rel="stylesheet">
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">
         <link rel="icon" href="{{ asset('/favicon.ico')}}"> 
     </head>
@@ -44,53 +39,33 @@
             </div>
 
         </div>
-        <script>
-   layui.use(['form', 'layedit', 'laydate'], function () {
-       var form = layui.form, layer = layui.layer, layedit = layui.layedit;
-       var index = layedit.build('reason', {
-           height: 120,
-           tool: [
-               'strong' //加粗
-                       , 'italic' //斜体
-                       , 'underline' //下划线
-                       , 'del' //删除线
-                       , '|' //分割线
-                       , 'left' //左对齐
-                       , 'center' //居中对齐
-                       , 'right' //右对齐
-                       , 'link' //超链接
-                       , 'unlink' //清除链接
-                       , 'face' //表情
-                       , 'image' //插入图片
-                       , 'code' //帮助
-           ]
-       });
-       //自定义验证规则
-       form.verify({
-           content: function (val) {
-               layedit.sync(index);
-           }
-       });
-       //事件监听
-       form.on('submit(article-box)', function (data) {
-           var data = data.field;
-           $.post('/admin/save-article', {data}, function (res) {
-               if (res.code == 0) {
-                   layer.msg('操作成功', {icon: 1});
-                   setTimeout(function () {
-                       parent.location.reload();
-                       layer.closeAll();
-                   }, 1500);
+        <script type="text/javascript">
+            layui.config({
+                base: '/js/'
+                , version: false
+            }).extend({
+                admin: 'admin',
+                pjax: 'pjax'
+            }).use(['admin', 'pjax'], function () {
+                var $ = layui.jquery,form = layui.form,common = layui.common,table = layui.table;
+                form.on('submit(article-box)', function (data) {
+                    var data = data.field;
+                    common.json('/admin/save-article', {data}, function (res) {
+                        if (res.code === 0) {
+                            layer.msg('操作成功', {icon: 1});
+                            setTimeout(function () {
+                                parent.location.reload();
+                                layer.closeAll();
+                            }, 1500);
 
-               } else {
-                   layer.msg(res.msg, {icon: 5});
-               }
-               return false;
-           });
-           return false;
-       });
-   });
-
+                        } else {
+                            layer.msg(res.msg, {icon: 5});
+                        }
+                        return false;
+                    });
+                    return false;
+                });
+            });
         </script>
     </body>
 </html>

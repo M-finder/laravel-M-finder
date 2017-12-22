@@ -26,12 +26,12 @@ class ArticleController extends Controller {
     }
     
     public function update_article($id = 0) {
-        $menus = Menu::select('id', 'name', 'type', 'seo_title', 'seo_describe', 'link')
+        $menus = Menu::select('id', 'name', 'type',  'link')
                         ->where('pid', '=', 0)
                         ->where('type', '=', 0)
                         ->get()->toArray();
         $article = Article::where('id', '=', $id)->first();
-        return view('admin.edit_article')->with('menus', $menus)->with('article', $article);
+        return view('admin.edit_article')->with('menus', $menus)->with('article', $article)->with('url','dashboard');
     }
     
 

@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider {
         view()->composer(['layouts.home', 'layouts.index','layouts.userhome','layouts.admin'], function($view) {
             $links = Link::orderBy('id', 'desc')->get();
             $web_info = SysConfig::first();
-            $menus = Menu::select('id', 'name', 'type', 'seo_title', 'seo_describe', 'link')->where('pid', '=', 0)->where('is_show', '=', '2')->get();
+            $menus = Menu::select('id', 'name', 'type',  'link')->where('pid', '=', 0)->where('is_show', '=', '2')->get();
             $view->with(['links' => $links, 'web_info' => $web_info, 'menus' => $menus]);
         });
     }
