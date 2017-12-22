@@ -56,6 +56,7 @@
                         <form id="commentform" method="POST"  class="layui-form comment-form" action="/comment" onsubmit="return false;">
                             <input type="hidden"  name="token" id="token" value="{{ $token }}">
                             <input type="hidden"  name="aid"  value="{{ $article->id }}">
+                            <input type="hidden"  name="reply_uids" id="reply_uids"  value="">
                             <div class="comment-form-div">
                                 <textarea id="comment_text" cols="45" rows="8" maxlength="65525" aria-required="true" class="layui-textarea"></textarea>
                             </div>
