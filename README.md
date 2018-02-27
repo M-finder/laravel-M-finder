@@ -1,7 +1,7 @@
 laravel-M-finder
 ===
 
-<p align="center"><img src="http://www.m-finder.com/public/images/banner.jpeg"></p>
+<p align="center">![](http://www.m-finder.com/images/banner.jpeg)</p>
 
 M-finder Blog
 ----
