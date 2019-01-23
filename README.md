@@ -8,6 +8,7 @@ M-finder Blog
 ----
 * laravel 5.5 updated to 5.7
 * layui 2.1.2
+* not finished
 
 
 Begin
